@@ -1,0 +1,40 @@
+@import 'settings/variables.sass'
+
+.wrapper
+    background-color: $brand-dark
+    padding: 10px 0
+
+.nav
+    margin-right: 20px
+
+.inner
+    display: flex
+    align-items: center
+
+.list
+    composes: list from '../Navigation/styles.module.sass'
+
+.item
+    composes: item from '../Navigation/styles.module.sass'
+
+.link
+    +focus
+    composes: link from '../Navigation/styles.module.sass'
+    font-size: 12px
+    color: tint($brand-light, 60%)
+
+    +hover
+        color: #fff
+
++breakpoint(large)
+    .wrapper
+        border-top: 1px solid tint($brand-dark, 10%)
+        margin: 0 -10px
+        padding: 5px 0
+
+    .inner
+        display: block
+
+    .nav
+        margin: 0
+        padding: 0 20px

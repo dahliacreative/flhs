@@ -1,0 +1,49 @@
+@import '~bourbon/core/bourbon'
+
+$white: #ededed
+$daintree: #092036
+$black-pearl: #001223
+$sundance: #c9b25d
+$midnight: #00172d
+$manatee: #8f9ca8
+
+$background-color: $white
+$brand-light: $daintree
+$brand-medium: $midnight
+$brand-dark: $black-pearl
+$brand-secondary: $sundance
+$base: $manatee
+
+$font-main: 'Roboto', sans-serif
+$font-secondary: 'PT Serif', serif
+
+$breakpoints: (xlarge: 1279px, large: 1023px, medium: 767px, small: 567px, xsmall: 420px)
+
+=hover
+    \:global(.show-hovers) &:hover,
+    \:global(.hide-hovers) &:active
+        @content
+
+=focus
+    outline: none
+    \:global(.show-focus) &:focus
+        box-shadow: 0 0 0 2px $brand-secondary
+        @content
+
+=breakpoint($bp, $dir: max)
+    @if map-has-key($breakpoints, $bp)
+        @if $dir == max
+            @media (max-width: map-get($breakpoints, $bp))
+                @content
+        @else
+            @media (min-width: map-get($breakpoints, $bp) + 1)
+                @content
+    @else if type-of($bp) == 'number'
+        @if $dir == max
+            @media (max-width: $bp)
+                @content
+        @else
+            @media (min-width: $bp)
+                @content
+    @else
+        @warn "Unfortunatley, no value could be retrieved from `#{$bp}`. Available breakpoints are: #{map-keys($breakpoints)}"

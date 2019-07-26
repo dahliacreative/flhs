@@ -1,0 +1,65 @@
+@import 'settings/variables.sass'
+
+.header
+    background-color: $brand-medium
+    display: flex
+    flex-direction: column
+
+    > *
+
+        &:first-child
+            order: 2
+
+.main
+    align-items: center
+    display: flex
+    padding: 25px 10px
+
+    +breakpoint(large)
+        padding: 20px 10px
+
+    +breakpoint(medium)
+        padding: 10px
+
+.hamburger
+    +focus
+    +size(30px, 24px)
+    background-color: transparent
+    border: none
+    cursor: pointer
+    margin-left: auto
+    padding: 0
+    position: relative
+    font-size: 0
+
+    &::before,
+    &::after,
+    span
+        +position(absolute, 50% null null 0)
+        background-color: #fff
+        content: ""
+        height: 2px
+        margin-top: -12px
+        transition: transform .2s, margin .2s .2s
+        width: 100%
+
+    &::after
+        margin-top: 10px
+
+    & span
+        margin-top: -1px
+        transition: .4s
+
+    &.isOpen
+        &::before,
+        &::after
+            margin-top: -1px
+            transform: rotate(-45deg)
+            transition: margin .2s, transform .2s .2s
+
+        &::after
+            transform: rotate(45deg)
+
+        span
+            opacity: 0
+            transform: scale(.5)

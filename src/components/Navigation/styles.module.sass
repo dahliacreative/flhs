@@ -1,0 +1,64 @@
+@import 'settings/variables.sass'
+
+.wrapper
+    margin-left: auto
+
+.list
+    display: flex
+    list-style: none
+    margin: 0
+    padding: 0
+
+.item
+    margin-left: 30px
+
+    &:first-child
+        margin-left: 0
+
+.link
+    +focus
+    color: #fff
+    font-family: $font-main
+    font-weight: 300
+    letter-spacing: 1px
+    text-decoration: none
+    text-transform: uppercase
+    transition: color .2s
+
+    +hover
+        color: tint($brand-light, 60%)
+
+    &.active
+        color: $brand-secondary
+
+        +hover
+            color: $brand-secondary
+
++breakpoint(large)
+    .wrapper
+        +position(fixed, 90px null 0 100%)
+        background-color: $brand-dark
+        transition: transform .5s $ease-in-out-quint
+        width: 100%
+        z-index: 6
+
+        &.isOpen
+            transform: translateX(-100%)
+
+    .list
+        display: block
+
+    .item
+        margin: 0
+
+    .nav
+        padding: 10px 20px
+
+    .link
+        padding: 10px 0
+        display: block
+
++breakpoint(medium)
+    .wrapper
+        top: 60px
+        padding-top: 10px

@@ -1,0 +1,49 @@
+@import 'settings/variables.sass'
+
+.footer
+    background-color: $brand-medium
+    padding-top: 6vw
+
+.sponsors
+    padding: 60px 10px
+
+.links
+    background-color: $brand-light
+
+.list
+    align-items: center
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    list-style: none
+    margin: 0
+    padding: 20px 10px 15px
+
+.item
+    +focus
+    border-right: 1px solid tint($brand-light, 40%)
+    color: tint($brand-light, 40%)
+    font-family: $font-main
+    font-size: 13px
+    margin: 0 10px 5px 0
+    padding-right: 10px
+
+    &:last-child
+        border-right: none
+        margin-right: 0
+        padding-right: 0
+
+.link
+    color: tint($brand-light, 40%)
+    text-decoration: none
+
+    +hover
+        text-decoration: underline
+
+.external
+    +focus
+    color: $brand-secondary
+    text-decoration: none
+
+    +hover
+        text-decoration: underline

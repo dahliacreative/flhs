@@ -1,0 +1,42 @@
+@import 'settings/variables.sass'
+
+.brand
+    +focus
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    align-items: center
+    color: #fff
+    display: flex
+    font-family: $font-main
+    font-size: 20px
+    font-smooth: always
+    font-weight: 300
+    letter-spacing: 2px
+    margin-right: 20px
+    text-decoration: none
+    text-transform: uppercase
+
+    img
+        margin-right: 16px
+
+    span
+        &:nth-child(1)
+            font-weight: 400
+
+        &:nth-child(3)
+            color: $brand-secondary
+            display: block
+            font-size: 16px
+
++breakpoint(medium)
+    .brand
+        font-size: 16px
+        letter-spacing: 1px
+
+        span
+            &:nth-child(3)
+                font-size: 13px
+
+        img
+            max-height: 40px
+            margin-right: 10px

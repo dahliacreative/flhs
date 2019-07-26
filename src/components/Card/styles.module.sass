@@ -1,0 +1,35 @@
+@import 'settings/variables.sass'
+
+.title
+    color: $brand-light
+    font-family: $font-main
+    font-size: 16px
+    font-weight: normal
+    letter-spacing: 1px
+    margin: 20px 0 0
+    text-transform: uppercase
+
+.image
+    background-color: $brand-secondary
+    overflow: hidden
+
+    img
+        display: block
+        margin: 0
+        width: 100%
+        transition: .3s
+
+.link
+    +focus
+    display: block
+    text-decoration: none
+
+    +hover
+        .image img
+            opacity: 0.8
+            transform: scale(1.2)
+    
++breakpoint(medium)
+    .title
+        font-size: 14px
+        margin: 10px 0 0

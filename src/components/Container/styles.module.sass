@@ -1,0 +1,32 @@
+@import 'settings/variables.sass'
+
+.container
+    box-sizing: border-box
+    margin: 0 auto
+    max-width: 1280px
+    padding: 0 40px
+    width: 100%
+
+    &.pad
+        padding: 40px
+
+    &.light
+        background-color: #fff
+
+    +breakpoint(xlarge)
+        padding: 0 30px
+
+        &.pad
+            padding: 30px
+
+    +breakpoint(large)
+        padding: 0 20px
+
+        &.pad
+            padding: 20px
+
+    +breakpoint(medium)
+        padding: 0 10px
+
+        &.pad
+            padding: 10px

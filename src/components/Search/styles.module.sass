@@ -1,0 +1,48 @@
+@import 'settings/variables.sass'
+
+.search
+    margin-left: auto
+    position: relative
+
+.input
+    appearance: none
+    background-color: $brand-light
+    border-radius: 50px
+    border: 1px solid $brand-light
+    box-sizing: border-box
+    color: tint($brand-light, 60%)
+    font-family: $font-main
+    font-size: 16px
+    padding: 8px 40px 8px 20px
+    transition: border-color .2s
+    width: 200px
+
+    &:focus
+        border-color: tint($brand-light, 10%)
+        outline: none
+
+.button
+    +focus
+    +position(absolute, 50% 14px null null)
+    +size(16px)
+    background-color: transparent
+    background-image: url('../../images/search.svg')
+    border: none
+    cursor: pointer
+    font-size: 0
+    padding: 0
+    transform: translateY(-52%)
+
+
++breakpoint(large)
+    .search
+        border-top: 1px solid tint($brand-dark, 10%)
+        margin-top: 10px
+        padding: 20px 20px 0
+
+    .input
+        width: 100%
+
+    .button
+        right: 30px
+        transform: none
