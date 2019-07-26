@@ -1,6 +1,6 @@
 @import 'settings/variables.sass'
 
-\:global(body)
+body
     background-color: $background-color
     color: $manatee
     display: flex
@@ -9,14 +9,14 @@
     margin: 0
     padding: 0
 
-\:global(#root)
+#root
     display: flex
     flex-direction: column
     min-height: 100vh
     overflow: hidden
     width: 100%
 
-\:global(main)
+main
     margin: -6vw 0 -6vw
     padding: 0 20px
     position: relative
@@ -28,5 +28,5 @@
 
 
 +breakpoint(medium)
-    \:global(body)
+    body
         font-size: 13px

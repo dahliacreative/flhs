@@ -7,7 +7,7 @@ import { bindEvents, unbindEvents } from './helpers'
 import Categories from 'pages/Categories'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import styles from './styles.module.sass'
+import './styles.sass'
 
 const App = () => {
     useEffect(() => {
