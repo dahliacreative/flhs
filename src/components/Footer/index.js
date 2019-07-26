@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Container from 'components/Container'
+import { GenerateNavigation } from 'components/Navigation'
 import styles from './styles.module.sass'
+import { navigation } from 'settings'
 
 const Footer = () => (
     <footer role="contentinfo" className={styles.footer}>
@@ -11,21 +13,7 @@ const Footer = () => (
         <div className={styles.links}>
             <Container>
                 <ul className={styles.list}>
-                    <li className={styles.item}>
-                        <Link className={styles.link} to="/privacy-policy">
-                            Privacy Policy
-                        </Link>
-                    </li>
-                    <li className={styles.item}>
-                        <Link className={styles.link} to="/terms-and-conditions">
-                            Terms & Conditions
-                        </Link>
-                    </li>
-                    <li className={styles.item}>
-                        <Link className={styles.link} to="/sitemap">
-                            SiteMap
-                        </Link>
-                    </li>
+                    {GenerateNavigation(navigation.footer, styles, Link)}
                     <li className={styles.item}>© FLHS 2019. Registered charity No. 01234567890</li>
                     <li className={styles.item}>
                         Website by{' '}

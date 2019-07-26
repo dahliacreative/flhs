@@ -32,4 +32,19 @@ const secondary = [
     }
 ]
 
-export default { primary, secondary }
+const footer = [
+    {
+        label: 'Privacy Policy',
+        url: '/privacy-policy'
+    },
+    {
+        label: 'Terms & Conditions',
+        url: '/terms-and-conditions'
+    },
+    {
+        label: 'Sitemap',
+        url: '/sitemap'
+    }
+]
+
+export default { primary, secondary, footer }

@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import Container from 'components/Container'
 import Search from 'components/Search'
+import { GenerateNavigation } from 'components/Navigation'
 import styles from './styles.module.sass'
 import { navigation } from 'settings'
 
@@ -10,15 +10,7 @@ const SecondaryNav = () => (
         <Container>
             <div className={styles.inner}>
                 <nav className={styles.nav}>
-                    <ul className={styles.list}>
-                        {navigation.secondary.map(item => (
-                            <li className={styles.item} key={item.url}>
-                                <NavLink to={item.url} className={styles.link} activeClassName={styles.active}>
-                                    {item.label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
+                    <ul className={styles.list}>{GenerateNavigation(navigation.secondary, styles)}</ul>
                 </nav>
                 <Search />
             </div>
