@@ -20,7 +20,7 @@ const App = () => {
                 <Router>
                     <Header />
                     <Switch>
-                        <Route path="/archives/categories" component={Categories} />
+                        <Route exact path="/archives/categories" component={Categories} />
                     </Switch>
                     <Footer />
                 </Router>
