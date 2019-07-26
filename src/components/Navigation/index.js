@@ -4,6 +4,7 @@ import { useBreakpoints } from 'react-device-breakpoints'
 import cx from 'classnames'
 import SecondaryNavigtion from 'components/SecondaryNavigation'
 import styles from './styles.module.sass'
+import { navigation } from 'settings'
 
 const Navigation = ({ isOpen }) => {
     const device = useBreakpoints()
@@ -11,26 +12,13 @@ const Navigation = ({ isOpen }) => {
         <div className={cx([styles.wrapper, isOpen && styles.isOpen])}>
             <nav className={styles.nav}>
                 <ul className={styles.list}>
-                    <li className={styles.item}>
-                        <NavLink to="/town" className={styles.link} activeClassName={styles.active}>
-                            The Town
-                        </NavLink>
-                    </li>
-                    <li className={styles.item}>
-                        <NavLink to="/society" className={styles.link} activeClassName={styles.active}>
-                            The Society
-                        </NavLink>
-                    </li>
-                    <li className={styles.item}>
-                        <NavLink to="/archives/categories" className={styles.link} activeClassName={styles.active}>
-                            The Archives
-                        </NavLink>
-                    </li>
-                    <li className={styles.item}>
-                        <NavLink to="/sponsors" className={styles.link} activeClassName={styles.active}>
-                            Our Sponsors
-                        </NavLink>
-                    </li>
+                    {navigation.primary.map(item => (
+                        <li className={styles.item} key={item.url}>
+                            <NavLink to={item.url} className={styles.link} activeClassName={styles.active}>
+                                {item.label}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
             {(device.isTablet || device.isLargeMobile || device.isMobile) && <SecondaryNavigtion />}

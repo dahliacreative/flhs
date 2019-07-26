@@ -16,7 +16,7 @@ const Header = ({ history }) => {
             toggleNav(false)
         })
         return listener
-    }, [])
+    }, [history])
     return (
         <header role="banner" className={styles.header}>
             <Container>

@@ -14,16 +14,10 @@ const removeHoverClass = () => {
     document.removeEventListener('touchstart', removeHoverClass)
 }
 
-const bindEvents = () => {
-    document.addEventListener('mousedown', dettachFocusClass)
-    document.addEventListener('keyup', attachFocusClass)
-    document.addEventListener('touchstart', removeHoverClass)
+const handleEvents = action => () => {
+    document[action]('mousedown', dettachFocusClass)
+    document[action]('keyup', attachFocusClass)
+    document[action]('touchstart', removeHoverClass)
 }
 
-const unbindEvents = () => {
-    document.removeEventListener('mousedown', dettachFocusClass)
-    document.removeEventListener('keyup', attachFocusClass)
-    document.removeEventListener('touchstart', removeHoverClass)
-}
-
-export { dettachFocusClass, attachFocusClass, removeHoverClass, bindEvents, unbindEvents }
+export { dettachFocusClass, attachFocusClass, removeHoverClass, handleEvents }
