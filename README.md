@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3f9e4678-f53f-4d0d-a973-9d83c06c7c32/deploy-status)](https://app.netlify.com/sites/gracious-payne-5580b3/deploys)
 [![Build Status](https://travis-ci.com/dahliacreative/flhs.svg?branch=master)](https://travis-ci.com/dahliacreative/flhs)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6ae11fc6abd55d4a8792/maintainability)](https://codeclimate.com/github/dahliacreative/flhs/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6ae11fc6abd55d4a8792/test_coverage)](https://codeclimate.com/github/dahliacreative/flhs/test_coverage)
