@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/dahliacreative/flhs.svg?branch=master)](https://travis-ci.com/dahliacreative/flhs)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6ae11fc6abd55d4a8792/maintainability)](https://codeclimate.com/github/dahliacreative/flhs/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6ae11fc6abd55d4a8792/test_coverage)](https://codeclimate.com/github/dahliacreative/flhs/test_coverage)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
