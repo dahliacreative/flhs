@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
+import cx from 'classnames'
 import { DiscussionEmbed } from 'disqus-react'
 import { constants, hooks } from 'settings'
 import { RecordFragment } from 'components/Record'
@@ -24,6 +25,7 @@ const query = gql`
 
 const Record = ({ match, history }) => {
     const [title, updateTitle] = useState('FLHS :: The Archives')
+    const [isLoaded, setLoaded] = useState(false)
     hooks.useMeta(title)
     return (
         <Query
@@ -42,7 +44,12 @@ const Record = ({ match, history }) => {
                         <Container light pad>
                             <Button onClick={() => history.goBack()}>Back to archives</Button>
                             <div className={styles.attachment}>
-                                <img src={record.attachment.url} alt={record.title} className={styles.image} />
+                                <img
+                                    src={record.attachment.url}
+                                    alt={record.title}
+                                    className={cx([styles.image, isLoaded && styles.show])}
+                                    onLoad={() => setLoaded(true)}
+                                />
                             </div>
                             <h1 className={styles.title}>{record.title}</h1>
                             <p className={styles.date}>

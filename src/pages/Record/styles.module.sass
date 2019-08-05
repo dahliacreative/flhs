@@ -9,6 +9,11 @@
 
     .image
         width: 100%
+        opacity: 0
+        transition: opacity .5s
+
+        &.show
+            opacity: 1
 
 .title
     font-family: $font-main
