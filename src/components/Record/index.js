@@ -29,6 +29,7 @@ const RecordFragment = gql`
 const Record = ({ location, hideCategories, categoryClick, ...props }) => (
     <Card {...props}>
         <Card.Link to={`/archives/records/${props.sys.id}`}>
+            {props.attachment.contentType.includes('image') ? <Card.Image /> : 'Attachment'}
             <Card.CommentCount>
                 <CommentCount
                     shortname={constants.DISQUS_SHORTNAME}
@@ -39,7 +40,6 @@ const Record = ({ location, hideCategories, categoryClick, ...props }) => (
                     }}
                 />
             </Card.CommentCount>
-            {props.attachment.contentType.includes('image') ? <Card.Image /> : 'Attachment'}
             <Card.Header>
                 <Card.Title />
                 <Card.Date />
