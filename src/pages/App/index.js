@@ -13,7 +13,7 @@ import './styles.sass'
 
 const App = () => {
     useEffect(() => {
-        handleEvents('addEventListener')
+        handleEvents('addEventListener')()
         return handleEvents('removeEventListener')
     }, [])
     return (
