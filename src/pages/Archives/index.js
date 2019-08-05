@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Query } from 'react-apollo'
 import { useBreakpoints } from 'react-device-breakpoints'
-import { constants } from 'settings'
+import { constants, hooks } from 'settings'
 import Banner from 'components/Banner'
 import Record from 'components/Record'
 import Loading from 'components/Loading'
@@ -16,6 +16,7 @@ import queries from './queries'
 import qs from 'query-string'
 
 const Archives = ({ location, history }) => {
+    hooks.useMeta('FLHS :: The Archives')
     const device = useBreakpoints()
     const query = qs.parse(location.search) || {}
     const main = useRef()

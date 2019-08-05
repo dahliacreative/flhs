@@ -2,7 +2,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { useBreakpoints } from 'react-device-breakpoints'
-import { constants } from 'settings'
+import { constants, hooks } from 'settings'
 import Category, { CategoryFragment } from 'components/Category'
 import Banner, { BannerFragment } from 'components/Banner'
 import Loading from 'components/Loading'
@@ -26,7 +26,9 @@ const query = gql`
 `
 
 const Categories = () => {
+    hooks.useMeta('FLHS :: Archive Categories')
     const device = useBreakpoints()
+
     return (
         <Query
             query={query}
