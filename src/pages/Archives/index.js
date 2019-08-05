@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Query } from 'react-apollo'
 import { useBreakpoints } from 'react-device-breakpoints'
 import { constants } from 'settings'
@@ -18,17 +18,15 @@ import qs from 'query-string'
 const Archives = ({ location, history }) => {
     const device = useBreakpoints()
     const query = qs.parse(location.search) || {}
-    const [page, updatePage] = useState(0)
-    const [modalIsOpen, toggleModal] = useState(false)
     const main = useRef()
     const wrapper = useRef()
-
     const variables = {
         transform: constants.CARD_IMAGE_DIMENSIONS,
-        skip: page * constants.PAGINATION_LIMIT,
+        skip: query.page ? (query.page - 1) * constants.PAGINATION_LIMIT : 0,
         limit: constants.PAGINATION_LIMIT,
         order: query.order || 'title_ASC'
     }
+
     if (query.category) {
         variables.categoryId = query.category
     }
@@ -41,23 +39,16 @@ const Archives = ({ location, history }) => {
         })
         wrapper.current.style.height = wrapper.current.style.scrollHeight
         setTimeout(() => {
-            updatePage(page - 1)
-        }, 750)
-    }
-
-    const closeModal = () => {
-        toggleModal(false)
-        setTimeout(() => {
-            delete query.record
+            query.page = page
             history.push({
                 pathname: location.pathname,
                 search: qs.stringify(query)
             })
-        }, 500)
+            wrapper.current.style.height = 'auto'
+        }, 750)
     }
 
     const changeCategory = v => {
-        console.log(v)
         if (v.value) {
             query.category = v.value
         } else {
@@ -148,13 +139,15 @@ const Archives = ({ location, history }) => {
                                                 </Grid.Item>
                                             ))}
                                         </Grid>
-                                        <Pagination
-                                            activePage={page + 1}
-                                            onChange={paginate}
-                                            itemsCountPerPage={collection.limit}
-                                            totalItemsCount={collection.total}
-                                            device={device}
-                                        />
+                                        {collection.total > 24 && (
+                                            <Pagination
+                                                activePage={parseInt(query.page, 10) || 1}
+                                                onChange={paginate}
+                                                itemsCountPerPage={collection.limit}
+                                                totalItemsCount={collection.total}
+                                                device={device}
+                                            />
+                                        )}
                                     </>
                                 )
                             }}
@@ -162,7 +155,6 @@ const Archives = ({ location, history }) => {
                     </div>
                 </Container>
             </main>
-            {/* <Modal isOpen={modalIsOpen} onClose={closeModal} /> */}
         </>
     )
 }

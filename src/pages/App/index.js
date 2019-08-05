@@ -6,6 +6,7 @@ import { client, constants } from 'settings'
 import { handleEvents } from './helpers'
 import Categories from 'pages/Categories'
 import Archives from 'pages/Archives'
+import Record from 'pages/Record'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import './styles.sass'
@@ -23,6 +24,7 @@ const App = () => {
                     <Switch>
                         <Route exact path="/archives" component={Archives} />
                         <Route exact path="/archives/categories" component={Categories} />
+                        <Route exact path="/archives/records/:id" component={Record} />
                     </Switch>
                     <Footer />
                 </Router>

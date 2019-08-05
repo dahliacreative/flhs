@@ -33,6 +33,8 @@ const Date = () => {
     return <p className={styles.date}>Added {dayjs(data.sys.firstPublishedAt).format('DD/MM/YYYY')}</p>
 }
 
+const CommentCount = ({ children }) => <div className={styles.count}>{children}</div>
+
 const Image = () => {
     const data = useContext(Context)
     const imageHasLoaded = () => {
@@ -67,5 +69,6 @@ Card.Link = Link
 Card.Header = Header
 Card.Date = Date
 Card.Tag = Tag
+Card.CommentCount = CommentCount
 
 export default Card

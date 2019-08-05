@@ -3,7 +3,8 @@ const BANNER_IMAGE_DIMENSIONS = {
     height: 900,
     resizeStrategy: 'FILL',
     resizeFocus: 'CENTER',
-    quality: 40
+    quality: 40,
+    format: 'JPG'
 }
 
 const CARD_IMAGE_DIMENSIONS = {
@@ -11,7 +12,14 @@ const CARD_IMAGE_DIMENSIONS = {
     height: 440,
     resizeStrategy: 'FILL',
     resizeFocus: 'FACES',
-    quality: 40
+    quality: 15,
+    format: 'JPG'
+}
+
+const RECORD_IMAGE_DIMENSIONS = {
+    width: 1845,
+    quality: 40,
+    format: 'JPG'
 }
 
 const BREAKPOINTS = {
@@ -43,10 +51,14 @@ const SORT_OPTIONS = [
     }
 ]
 
+const DISQUS_SHORTNAME = 'flhs'
+
 export default {
     BANNER_IMAGE_DIMENSIONS,
     CARD_IMAGE_DIMENSIONS,
     BREAKPOINTS,
     PAGINATION_LIMIT,
-    SORT_OPTIONS
+    SORT_OPTIONS,
+    DISQUS_SHORTNAME,
+    RECORD_IMAGE_DIMENSIONS
 }

@@ -3,6 +3,7 @@
 .card
     opacity: 0
     transition: .3s
+    position: relative
 
     &.show
         opacity: 1
@@ -72,6 +73,21 @@
 
     +hover
         background-color: tint($brand-light, 80%)
+
+.count
+    \:global(.disqus-comment-count)
+        +position(absolute, 10px 10px null null)
+        background-color: $brand-secondary
+        border-radius: 100px
+        color: $brand-medium
+        font-family: $font-main
+        font-size: 10px
+        padding: 5px 10px
+        text-transform: uppercase
+        z-index: 1
+
+        &:empty::before
+            content: "0 comments"
     
 +breakpoint(medium)
     .title
