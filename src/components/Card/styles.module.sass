@@ -1,5 +1,12 @@
 @import 'settings/variables.sass'
 
+.card
+    opacity: 0
+    transition: .3s
+
+    &.show
+        opacity: 1
+
 .title
     color: $brand-light
     font-family: $font-main
@@ -9,15 +16,23 @@
     margin: 20px 0 0
     text-transform: uppercase
 
+.date
+    font-style: italic
+    color: $base
+    margin: 0
+
 .image
     background-color: $brand-secondary
     overflow: hidden
+    position: relative
 
-    img
+    .original
+        +position(absolute, 0 null null 0)
         display: block
         margin: 0
         width: 100%
         transition: .3s
+        transform: scale(1.02)
 
 .link
     +focus
@@ -25,9 +40,38 @@
     text-decoration: none
 
     +hover
-        .image img
+        .image .original
             opacity: 0.8
             transform: scale(1.2)
+
+.placeholder
+    background-color: $brand-secondary
+    position: relative
+
+    img
+        display: block
+        width: 100%
+
+    &.hidden
+        opacity: 0
+
+.header
+    margin-bottom: 10px
+
+.tag
+    background-color: $background-color
+    border-radius: 100px
+    color: $brand-medium
+    cursor: pointer
+    display: inline-block
+    font-family: $font-main
+    font-size: 12px
+    margin-right: 5px
+    padding: 5px 10px
+    transition: .3s
+
+    +hover
+        background-color: tint($brand-light, 80%)
     
 +breakpoint(medium)
     .title

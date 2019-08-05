@@ -13,7 +13,7 @@ const GenerateNavigation = (list, styles, Component = NavLink) => {
     }
     return list.map(item => (
         <li className={styles.item} key={item.url}>
-            <Component to={item.url} className={styles.link} {...props}>
+            <Component to={item.url} className={styles.link} {...props} {...item.props}>
                 {item.label}
             </Component>
         </li>

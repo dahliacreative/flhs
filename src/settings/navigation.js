@@ -9,7 +9,10 @@ const primary = [
     },
     {
         label: 'The Archives',
-        url: '/archives/categories'
+        url: '/archives/categories',
+        props: {
+            isActive: (match, location) => location.pathname.includes('archives')
+        }
     },
     {
         label: 'Our Sponsors',

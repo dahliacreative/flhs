@@ -5,6 +5,7 @@ import { Breakpoints } from 'react-device-breakpoints'
 import { client, constants } from 'settings'
 import { handleEvents } from './helpers'
 import Categories from 'pages/Categories'
+import Archives from 'pages/Archives'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import './styles.sass'
@@ -20,6 +21,7 @@ const App = () => {
                 <Router>
                     <Header />
                     <Switch>
+                        <Route exact path="/archives" component={Archives} />
                         <Route exact path="/archives/categories" component={Categories} />
                     </Switch>
                     <Footer />
