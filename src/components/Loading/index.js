@@ -8,12 +8,11 @@ const Loading = () => {
     useEffect(() => {
         timer = setTimeout(() => {
             toggleDisplay(true)
-        }, 500)
+        }, 0)
         return () => clearTimeout(timer)
     }, [toggleDisplay])
     return display ? (
         <div className={styles.loader}>
-            <span />
             <span />
             <span />
             <span />

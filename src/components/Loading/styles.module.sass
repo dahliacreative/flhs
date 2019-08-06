@@ -4,74 +4,28 @@
     +size(50px)
     margin: 5vw auto
     position: relative
-    transform: rotate(-45deg)
+    display: flex
 
     span
-        +size(10px)
-        animation: fade 4s cubic-bezier(0.75, 0, 0.5, 1) infinite normal
+        +size(6px)
         border-radius: 50%
-        border: 3px solid tint($brand-secondary, 75%)
+        background-color: $brand-secondary
         display: block
-        position: absolute
-
-        &:nth-child(1)
-            top: 0
-            left: 0
-            animation-delay: 0s
+        margin: 0 2px
+        animation: bounce .5s infinite $ease-in-out-circ
 
         &:nth-child(2)
-            top: 0
-            right: 0
-            animation-delay: 1s
-
+            animation-delay: .1s
         &:nth-child(3)
-            right: 0
-            bottom: 0
-            animation-delay: 2s
+            animation-delay: .2s
 
-        &:nth-child(4)
-            left: 0
-            bottom: 0
-            animation-delay: 3s
-
-    &::after
-        +position(absolute, 0 null null 0)
-        +size(16px)
-        animation: move 4s cubic-bezier(0.75, 0, 0.5, 1) infinite
-        background-color: $brand-secondary
-        border-radius: 50%
-        content: ""
-
-
-@keyframes move
+@keyframes bounce
     0%
-        top: 0
-        left: 0
-    25%
-        top: 0
-        left: calc(100% - 16px)
-
+        transform: none
+        opacity: 0.5
     50%
-        top: calc(100% - 16px)
-        left: calc(100% - 16px)
-
-    75%
-        top: calc(100% - 16px)
-        left: 0
-
+        transform: translateY(-100%)
+        opacity: 1
     100%
-        top: 0
-        left: 0
-
-@keyframes fade
-    0%
-        border-color: tint($brand-secondary, 75%)
-
-    25%
-        border-color: $brand-secondary
-
-    50%
-        border-color: tint($brand-secondary, 75%)
-
-    100%
-        border-color: tint($brand-secondary, 75%)
+        transform: none
+        opacity: 0.5
