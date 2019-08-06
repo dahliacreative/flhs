@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styles from './styles.module.sass'
 
 let timer
 
@@ -7,10 +8,17 @@ const Loading = () => {
     useEffect(() => {
         timer = setTimeout(() => {
             toggleDisplay(true)
-        }, 300)
+        }, 500)
         return () => clearTimeout(timer)
     }, [toggleDisplay])
-    return display ? <p>Loading...</p> : null
+    return display ? (
+        <div className={styles.loader}>
+            <span />
+            <span />
+            <span />
+            <span />
+        </div>
+    ) : null
 }
 
 export default Loading

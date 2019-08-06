@@ -15,16 +15,18 @@ const BannerFragment = gql`
     }
 `
 
-const Banner = ({ page, caption, credit, bannerImage }) => {
+const Banner = ({ page, caption, credit, bannerImage, loading, error }) => {
     const [hasLoaded, setLoaded] = useState(false)
     return (
         <div className={styles.banner}>
-            <img
-                src={bannerImage.url}
-                alt={caption}
-                className={cx([styles.image, hasLoaded && styles.show])}
-                onLoad={() => setLoaded(true)}
-            />
+            {!loading && !error && (
+                <img
+                    src={bannerImage.url}
+                    alt={caption}
+                    className={cx([styles.image, hasLoaded && styles.show])}
+                    onLoad={() => setLoaded(true)}
+                />
+            )}
             <div className={styles.title}>
                 <Container>
                     <h1>{page}</h1>

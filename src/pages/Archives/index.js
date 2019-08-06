@@ -79,10 +79,7 @@ const Archives = ({ location, history }) => {
                 }}
             >
                 {({ loading, error, data }) => {
-                    if (loading || error) {
-                        return null
-                    }
-                    return <Banner {...data.pageBanner} />
+                    return <Banner {...data.pageBanner} loading={loading} error={error} />
                 }}
             </Query>
             <main ref={main}>
