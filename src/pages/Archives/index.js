@@ -35,18 +35,15 @@ const Archives = ({ location, history }) => {
     const paginate = page => {
         window.scrollTo({
             top: main.current.offsetTop - 50,
-            left: 0,
-            behavior: 'smooth'
+            left: 0
         })
-        wrapper.current.style.height = wrapper.current.style.scrollHeight
-        setTimeout(() => {
-            query.page = page
-            history.push({
-                pathname: location.pathname,
-                search: qs.stringify(query)
-            })
-            wrapper.current.style.height = 'auto'
-        }, 750)
+        wrapper.current.style.height = `${wrapper.current.scrollHeight}px`
+
+        query.page = page
+        history.push({
+            pathname: location.pathname,
+            search: qs.stringify(query)
+        })
     }
 
     const changeCategory = v => {
@@ -55,6 +52,7 @@ const Archives = ({ location, history }) => {
         } else {
             delete query.category
         }
+        delete query.page
         history.push({
             pathname: location.pathname,
             search: qs.stringify(query)
@@ -85,7 +83,11 @@ const Archives = ({ location, history }) => {
             <main ref={main}>
                 <Container light pad>
                     <div ref={wrapper}>
-                        <Query query={query.category ? queries.category : queries.archive} variables={variables}>
+                        <Query
+                            query={query.category ? queries.category : queries.archive}
+                            variables={variables}
+                            onCompleted={() => (wrapper.current.style.height = 'auto')}
+                        >
                             {({ loading, error, data }) => {
                                 if (loading) return <Loading />
                                 if (error) return <Error error={error} />
