@@ -8,7 +8,7 @@ const Loading = () => {
     useEffect(() => {
         timer = setTimeout(() => {
             toggleDisplay(true)
-        }, 100)
+        }, 300)
         return () => clearTimeout(timer)
     }, [toggleDisplay])
     return display ? (

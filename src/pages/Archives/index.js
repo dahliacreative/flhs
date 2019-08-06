@@ -32,13 +32,16 @@ const Archives = ({ location, history }) => {
         variables.categoryId = query.category
     }
 
-    const paginate = page => {
+    const resetViewport = () => {
         window.scrollTo({
             top: main.current.offsetTop - 50,
             left: 0
         })
         wrapper.current.style.height = `${wrapper.current.scrollHeight}px`
+    }
 
+    const paginate = page => {
+        resetViewport()
         query.page = page
         history.push({
             pathname: location.pathname,
@@ -47,6 +50,7 @@ const Archives = ({ location, history }) => {
     }
 
     const changeCategory = v => {
+        resetViewport()
         if (v.value) {
             query.category = v.value
         } else {
@@ -60,6 +64,7 @@ const Archives = ({ location, history }) => {
     }
 
     const changeOrder = v => {
+        resetViewport()
         query.order = v.value
         history.replace({
             pathname: location.pathname,
