@@ -28,49 +28,51 @@ const Record = ({ match, history }) => {
     const [isLoaded, setLoaded] = useState(false)
     hooks.useMeta(title)
     return (
-        <Query
-            query={query}
-            variables={{
-                id: match.params.id,
-                transform: constants.RECORD_IMAGE_DIMENSIONS
-            }}
-            onCompleted={data => updateTitle(`FLHS :: ${data.record.title}`)}
-        >
-            {({ loading, error, data: { record } }) => {
-                if (loading) return <Loading />
-                if (error) return <Error error={error} />
-                return (
-                    <main className="no-banner">
-                        <Container light pad>
-                            <Button onClick={() => history.goBack()}>Back to archives</Button>
-                            <div className={styles.attachment}>
-                                <img
-                                    src={record.attachment.url}
-                                    alt={record.title}
-                                    className={cx([styles.image, isLoaded && styles.show])}
-                                    onLoad={() => setLoaded(true)}
-                                />
-                            </div>
-                            <h1 className={styles.title}>{record.title}</h1>
-                            <p className={styles.date}>
-                                {record.year} Credit {record.credit}
-                            </p>
-                            <p className={styles.description}>{record.description}</p>
-                            <div className={styles.comments}>
-                                <DiscussionEmbed
-                                    shortname={constants.DISQUS_SHORTNAME}
-                                    config={{
-                                        url: `${window.location.origin}/archives/records/${record.sys.id}`,
-                                        identifier: record.sys.id,
-                                        title: record.title
-                                    }}
-                                />
-                            </div>
-                        </Container>
-                    </main>
-                )
-            }}
-        </Query>
+        <main className="no-banner">
+            <Container light pad>
+                <Query
+                    query={query}
+                    variables={{
+                        id: match.params.id,
+                        transform: constants.RECORD_IMAGE_DIMENSIONS
+                    }}
+                    onCompleted={data => updateTitle(`FLHS :: ${data.record.title}`)}
+                >
+                    {({ loading, error, data: { record } }) => {
+                        if (loading) return <Loading />
+                        if (error) return <Error error={error} />
+                        return (
+                            <>
+                                <Button onClick={() => history.goBack()}>Back to archives</Button>
+                                <div className={styles.attachment}>
+                                    <img
+                                        src={record.attachment.url}
+                                        alt={record.title}
+                                        className={cx([styles.image, isLoaded && styles.show])}
+                                        onLoad={() => setLoaded(true)}
+                                    />
+                                </div>
+                                <h1 className={styles.title}>{record.title}</h1>
+                                <p className={styles.date}>
+                                    {record.year} Credit {record.credit}
+                                </p>
+                                <p className={styles.description}>{record.description}</p>
+                                <div className={styles.comments}>
+                                    <DiscussionEmbed
+                                        shortname={constants.DISQUS_SHORTNAME}
+                                        config={{
+                                            url: `${window.location.origin}/archives/records/${record.sys.id}`,
+                                            identifier: record.sys.id,
+                                            title: record.title
+                                        }}
+                                    />
+                                </div>
+                            </>
+                        )
+                    }}
+                </Query>
+            </Container>
+        </main>
     )
 }
 
