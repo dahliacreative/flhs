@@ -40,7 +40,13 @@ const Footer = () => {
                         <p>Thank you to our gold sponsors</p>
                         <div className={styles.logos}>
                             {data.sponsorCollection.items.map(i => (
-                                <a href={i.website} key={i.sys.id} className={styles.sponsor}>
+                                <a
+                                    href={i.website}
+                                    key={i.sys.id}
+                                    className={styles.sponsor}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <img src={i.logo.url} alt="" />
                                 </a>
                             ))}

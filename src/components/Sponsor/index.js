@@ -13,13 +13,15 @@ const Sponsor = ({ name, biography, website, type, logo }) => (
                 <div className={styles.about}>
                     <h3>{name}</h3>
                     <p>{biography}</p>
-                    <Button href={website}>Visit {name}</Button>
+                    <Button href={website} target="_blank" rel="noopener noreferrer">
+                        Visit {name}
+                    </Button>
                 </div>
             </>
         ) : (
             <>
                 {type === 'bronze' ? (
-                    <a href={website} className={styles.link}>
+                    <a href={website} target="_blank" rel="noopener noreferrer" className={styles.link}>
                         <img src={logo.url} alt={name} />
                     </a>
                 ) : (
