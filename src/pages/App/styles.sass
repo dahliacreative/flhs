@@ -29,6 +29,35 @@ main
     +breakpoint(medium)
         padding: 0 10px
 
+.generic
+    font-family: $font-main
+    max-width: 800px
+
+    a
+        color: $brand-secondary
+        transition: .2s
+
+        .show-hovers &:hover,
+        .hide-hovers &:active
+            color: $brand-medium
+
+    h3
+        
+        color: $brand-medium
+        font-weight: 300
+        text-transform: uppercase
+        font-size: 20px
+
+        b
+            font-weight: 300
+
+    ul > li 
+        margin: 0 0 10px
+        p
+            margin: 0 0 5px
+
+            
+
 
 +breakpoint(medium)
     body

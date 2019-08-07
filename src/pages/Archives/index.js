@@ -16,7 +16,7 @@ import queries from './queries'
 import qs from 'query-string'
 
 const Archives = ({ location, history }) => {
-    hooks.useMeta('FLHS :: The Archives')
+    hooks.useMeta('FLHS :: Archive')
     const device = useBreakpoints()
     const query = qs.parse(location.search) || {}
     const main = useRef()

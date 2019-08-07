@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import cx from 'classnames'
 import { DiscussionEmbed } from 'disqus-react'
@@ -27,21 +27,30 @@ const Record = ({ match, history }) => {
     const [title, updateTitle] = useState('FLHS :: The Archives')
     const [isLoaded, setLoaded] = useState(false)
     hooks.useMeta(title)
+    const {
+        loading,
+        error,
+        data: { record }
+    } = useQuery(query, {
+        variables: {
+            id: match.params.id,
+            transform: constants.RECORD_IMAGE_DIMENSIONS
+        },
+        onCompleted: data => {
+            updateTitle(`FLHS :: Archive :: Record :: ${data.record.title}`)
+        }
+    })
+    hooks.useMeta(title)
     return (
         <main className="no-banner">
             <Container light pad>
-                <Query
-                    query={query}
-                    variables={{
-                        id: match.params.id,
-                        transform: constants.RECORD_IMAGE_DIMENSIONS
-                    }}
-                    onCompleted={data => updateTitle(`FLHS :: ${data.record.title}`)}
-                >
-                    {({ loading, error, data: { record } }) => {
-                        if (loading) return <Loading />
-                        if (error) return <Error error={error} />
-                        return (
+                {error ? (
+                    <Error error={error} />
+                ) : (
+                    <>
+                        {loading ? (
+                            <Loading />
+                        ) : (
                             <>
                                 <Button onClick={() => history.goBack()}>Back to archives</Button>
                                 <div className={styles.attachment}>
@@ -68,9 +77,9 @@ const Record = ({ match, history }) => {
                                     />
                                 </div>
                             </>
-                        )
-                    }}
-                </Query>
+                        )}
+                    </>
+                )}
             </Container>
         </main>
     )

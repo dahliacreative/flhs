@@ -32,7 +32,7 @@ const query = gql`
 `
 
 const Sponsors = () => {
-    hooks.useMeta('FLHS :: Our Sponsors')
+    hooks.useMeta('FLHS :: Sponsors')
     const { loading, error, data } = useQuery(query, {
         variables: {
             transform: constants.SPONSOR_LARGE_IMAGE_DIMENSIONS,

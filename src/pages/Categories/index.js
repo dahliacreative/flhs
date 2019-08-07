@@ -22,7 +22,7 @@ const query = gql`
 `
 
 const Categories = ({ client }) => {
-    hooks.useMeta('FLHS :: Archive Categories')
+    hooks.useMeta('FLHS :: Archive :: Categories')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
         vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
