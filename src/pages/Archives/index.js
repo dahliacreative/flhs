@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { useBreakpoints } from 'react-device-breakpoints'
 import { constants, hooks } from 'settings'
 import Banner from 'components/Banner'
@@ -32,6 +32,17 @@ const Archives = ({ location, history }) => {
         variables.categoryId = query.category
     }
 
+    const { loading, error, data } = useQuery(query.category ? queries.category : queries.archive, {
+        variables,
+        onCompleted: () => (wrapper.current.style.height = 'auto')
+    })
+
+    const collection = loading
+        ? { skip: 0, limit: 0, total: 0 }
+        : query.category
+        ? data.category.linkedFrom.recordCollection
+        : data.recordCollection
+
     const resetViewport = () => {
         window.scrollTo({
             top: main.current.offsetTop - 50,
@@ -51,8 +62,8 @@ const Archives = ({ location, history }) => {
 
     const changeCategory = v => {
         resetViewport()
-        if (v.value) {
-            query.category = v.value
+        if (v) {
+            query.category = v
         } else {
             delete query.category
         }
@@ -65,7 +76,7 @@ const Archives = ({ location, history }) => {
 
     const changeOrder = v => {
         resetViewport()
-        query.order = v.value
+        query.order = v
         history.replace({
             pathname: location.pathname,
             search: qs.stringify(query)
@@ -74,60 +85,44 @@ const Archives = ({ location, history }) => {
 
     return (
         <>
-            <Query
-                query={queries.banner}
-                variables={{
-                    bannerId: '6sRxVmIS2xjBgxxi47j9TD',
-                    bannerTransform: constants.BANNER_IMAGE_DIMENSIONS
-                }}
-            >
-                {({ loading, error, data }) => {
-                    return <Banner {...data.pageBanner} loading={loading} error={error} />
-                }}
-            </Query>
+            <Banner id="6sRxVmIS2xjBgxxi47j9TD" />
             <main ref={main}>
                 <Container light pad>
                     <div ref={wrapper}>
-                        <Query
-                            query={query.category ? queries.category : queries.archive}
-                            variables={variables}
-                            onCompleted={() => (wrapper.current.style.height = 'auto')}
-                        >
-                            {({ loading, error, data }) => {
-                                if (loading) return <Loading />
-                                if (error) return <Error error={error} />
-                                const collection = query.category
-                                    ? data.category.linkedFrom.recordCollection
-                                    : data.recordCollection
-                                return (
+                        {error ? (
+                            <Error error={error} />
+                        ) : (
+                            <>
+                                <ActionHeader>
+                                    <ActionHeader.Column>
+                                        <ActionHeader.Control>
+                                            <ActionHeader.Results collection={collection} />
+                                        </ActionHeader.Control>
+                                    </ActionHeader.Column>
+                                    <ActionHeader.Column>
+                                        {!query.category && (
+                                            <ActionHeader.Control>
+                                                <ActionHeader.Label>Sort:</ActionHeader.Label>
+                                                <Select
+                                                    options={constants.SORT_OPTIONS}
+                                                    value={
+                                                        constants.SORT_OPTIONS.find(o => o.value === query.order) ||
+                                                        constants.SORT_OPTIONS[0]
+                                                    }
+                                                    onChange={changeOrder}
+                                                />
+                                            </ActionHeader.Control>
+                                        )}
+                                        <ActionHeader.Control>
+                                            <ActionHeader.Label>Category:</ActionHeader.Label>
+                                            <Categories selected={query.category} onChange={changeCategory} />
+                                        </ActionHeader.Control>
+                                    </ActionHeader.Column>
+                                </ActionHeader>
+                                {loading ? (
+                                    <Loading />
+                                ) : (
                                     <>
-                                        <ActionHeader>
-                                            <ActionHeader.Column>
-                                                <ActionHeader.Control>
-                                                    <ActionHeader.Results collection={collection} />
-                                                </ActionHeader.Control>
-                                            </ActionHeader.Column>
-                                            <ActionHeader.Column>
-                                                <ActionHeader.Control>
-                                                    <ActionHeader.Label>Category:</ActionHeader.Label>
-                                                    <Categories selected={query.category} onChange={changeCategory} />
-                                                </ActionHeader.Control>
-                                                {!query.category && (
-                                                    <ActionHeader.Control>
-                                                        <ActionHeader.Label>Sort:</ActionHeader.Label>
-                                                        <Select
-                                                            options={constants.SORT_OPTIONS}
-                                                            value={
-                                                                constants.SORT_OPTIONS.find(
-                                                                    o => o.value === query.order
-                                                                ) || constants.SORT_OPTIONS[0]
-                                                            }
-                                                            onChange={changeOrder}
-                                                        />
-                                                    </ActionHeader.Control>
-                                                )}
-                                            </ActionHeader.Column>
-                                        </ActionHeader>
                                         <Grid
                                             columns={
                                                 device.isMobile ? 1 : device.isLargeMobile || device.isTablet ? 2 : 3
@@ -154,9 +149,9 @@ const Archives = ({ location, history }) => {
                                             />
                                         )}
                                     </>
-                                )
-                            }}
-                        </Query>
+                                )}
+                            </>
+                        )}
                     </div>
                 </Container>
             </main>

@@ -1,15 +1,5 @@
 import { gql } from 'apollo-boost'
-import { BannerFragment } from 'components/Banner'
 import { RecordFragment } from 'components/Record'
-
-const banner = gql`
-    ${BannerFragment}
-    query Banner($bannerId: String!, $bannerTransform: ImageTransformOptions!) {
-        pageBanner(id: $bannerId) {
-            ...BannerFragment
-        }
-    }
-`
 
 const category = gql`
     ${RecordFragment}
@@ -57,7 +47,6 @@ const categories = gql`
 `
 
 export default {
-    banner,
     category,
     archive,
     categories

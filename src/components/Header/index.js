@@ -24,6 +24,11 @@ const Header = ({ history }) => {
                     <Brand />
                     {(device.isTablet || device.isLargeMobile || device.isMobile) && (
                         <button
+                            onKeyDown={e => {
+                                if (e.keyCode === 9) {
+                                    toggleNav(!e.shiftKey)
+                                }
+                            }}
                             onClick={() => toggleNav(!navIsOpen)}
                             className={cx([styles.hamburger, navIsOpen && styles.isOpen])}
                         >

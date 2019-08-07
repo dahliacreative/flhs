@@ -22,6 +22,22 @@ const RECORD_IMAGE_DIMENSIONS = {
     format: 'JPG'
 }
 
+const SPONSOR_IMAGE_DIMENSIONS = {
+    width: 320,
+    height: 140,
+    format: 'PNG',
+    resizeStrategy: 'FIT',
+    quality: 40
+}
+
+const SPONSOR_LARGE_IMAGE_DIMENSIONS = {
+    width: 640,
+    height: 280,
+    format: 'PNG',
+    resizeStrategy: 'FIT',
+    quality: 40
+}
+
 const BREAKPOINTS = {
     isLargeDesktop: '(min-width: 1280px)',
     isDesktop: '(max-width: 1279px) and (min-width: 1024px)',
@@ -60,5 +76,7 @@ export default {
     PAGINATION_LIMIT,
     SORT_OPTIONS,
     DISQUS_SHORTNAME,
-    RECORD_IMAGE_DIMENSIONS
+    RECORD_IMAGE_DIMENSIONS,
+    SPONSOR_IMAGE_DIMENSIONS,
+    SPONSOR_LARGE_IMAGE_DIMENSIONS
 }

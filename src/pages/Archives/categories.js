@@ -13,7 +13,7 @@ const Categories = ({ selected, onChange }) => (
                   }))
                 : []
             options.unshift({
-                value: null,
+                value: '',
                 label: 'All'
             })
             const value = options.find(o => o.value === selected) || options[0]

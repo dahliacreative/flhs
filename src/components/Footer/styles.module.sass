@@ -5,7 +5,45 @@
     padding-top: 6vw
 
 .sponsors
-    padding: 60px 10px
+    padding: 40px 0
+
+    p
+        color: tint($brand-light, 60%)
+        font-family: $font-main
+        font-size: 12px
+        font-weight: 300
+        letter-spacing: 1px
+        margin: 0 0 20px
+        text-align: center
+        text-transform: uppercase
+
+.logos
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+
+.sponsor
+    +focus
+    max-width: 160px
+    margin: 10px 20px
+
+    +breakpoint(large)
+        max-width: 150px
+    +breakpoint(medium)
+        max-width: 120px
+    +breakpoint(small)
+        max-width: 100px
+
+    +hover
+        img
+            opacity: .5
+    
+    img
+        display: block
+        width: 100%
+        opacity: .3
+        transition: .3s
 
 .links
     background-color: $brand-light
@@ -20,7 +58,6 @@
     padding: 20px 10px 15px
 
 .item
-    +focus
     border-right: 1px solid tint($brand-light, 40%)
     color: tint($brand-light, 40%)
     font-family: $font-main
@@ -34,8 +71,10 @@
         padding-right: 0
 
 .link
+    +focus
     color: tint($brand-light, 40%)
     text-decoration: none
+    font-weight: 300
 
     +hover
         text-decoration: underline

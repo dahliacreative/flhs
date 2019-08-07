@@ -18,10 +18,14 @@
         content: ""
         mix-blend-mode: lighten
         z-index: 1
+        
 
     &::after
+        display: none
         background-color: rgba(#00172C, .5)
-        mix-blend-mode: soft-light
+        @supports(mix-blend-mode: soft-light)
+            display: block
+            mix-blend-mode: soft-light
 
 .content
     padding: 0 10px calc(6vw + 40px)
@@ -55,7 +59,7 @@
         color: #fff
         font-family: $font-main
         font-size: 50px
-        font-weight: 300
+        font-weight: 100
         letter-spacing: 2px
         margin: 0
         text-transform: uppercase
