@@ -10,6 +10,10 @@ const RecordFragment = gql`
         attachment {
             url(transform: $transform)
             contentType
+            fileName
+            sys {
+                id
+            }
         }
         categoryCollection {
             items {

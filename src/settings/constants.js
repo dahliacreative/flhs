@@ -12,7 +12,7 @@ const CARD_IMAGE_DIMENSIONS = {
     height: 440,
     resizeStrategy: 'FILL',
     resizeFocus: 'FACES',
-    quality: 15,
+    quality: 30,
     format: 'JPG'
 }
 

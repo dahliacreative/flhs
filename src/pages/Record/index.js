@@ -53,17 +53,27 @@ const Record = ({ match, history }) => {
                         ) : (
                             <>
                                 <Button onClick={() => history.goBack()}>Back to archives</Button>
-                                <div className={styles.attachment}>
+                                <div className={cx([styles.attachment, isLoaded && styles.show])}>
                                     <img
                                         src={record.attachment.url}
                                         alt={record.title}
-                                        className={cx([styles.image, isLoaded && styles.show])}
+                                        className={styles.image}
                                         onLoad={() => setLoaded(true)}
                                     />
+                                    <a
+                                        className={styles.download}
+                                        href={record.attachment.url.split('?')[0]}
+                                        download
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Download Image
+                                    </a>
                                 </div>
                                 <h1 className={styles.title}>{record.title}</h1>
                                 <p className={styles.date}>
-                                    {record.year} Credit {record.credit}
+                                    {record.year ? record.year : 'Year unknown'} Credit{' '}
+                                    {record.credit ? record.credit : 'unknown'}
                                 </p>
                                 <p className={styles.description}>{record.description}</p>
                                 <div className={styles.comments}>
