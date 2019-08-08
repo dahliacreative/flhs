@@ -7,7 +7,7 @@ import styles from './styles.module.sass'
 
 const Navigation = ({ children }) => {
     const device = useBreakpoints()
-    const { index, setIndex } = useContext(Context)
+    const { index, setIndex, onChange } = useContext(Context)
     return device.isMobile || device.isLargeMobile || device.isTablet ? (
         <Select
             value={{ value: index, label: children[index].props.children }}
@@ -19,7 +19,7 @@ const Navigation = ({ children }) => {
             {React.Children.map(children, (child, i) =>
                 React.cloneElement(child, {
                     isActive: index === i,
-                    activateTab: () => setIndex(i)
+                    activateTab: onChange ? () => onChange(i) : () => setIndex(i)
                 })
             )}
         </div>
@@ -41,12 +41,12 @@ const Panels = ({ children }) => {
     return children[index]
 }
 
-const Tabs = ({ children, active = 0 }) => {
+const Tabs = ({ children, active = 0, onChange }) => {
     const [index, setIndex] = useState(active)
     useEffect(() => {
         setIndex(active)
     }, [active])
-    return <Provider value={{ index, setIndex }}>{children}</Provider>
+    return <Provider value={{ index, setIndex, onChange }}>{children}</Provider>
 }
 
 Tabs.Navigation = Navigation

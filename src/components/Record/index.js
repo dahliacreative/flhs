@@ -47,11 +47,7 @@ const Record = ({ location, hideCategories, categoryClick, ...props }) => (
         </Card.Link>
         {!hideCategories &&
             props.categoryCollection.items.map(c => (
-                <Card.Tag
-                    title={c.title}
-                    key={`${props.sys.id}-${c.title}`}
-                    onClick={() => categoryClick({ value: c.sys.id })}
-                />
+                <Card.Tag title={c.title} key={`${props.sys.id}-${c.title}`} onClick={() => categoryClick(c.sys.id)} />
             ))}
     </Card>
 )

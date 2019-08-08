@@ -5,7 +5,10 @@ const primary = [
     },
     {
         label: 'The Society',
-        url: '/society'
+        url: '/society/committee',
+        props: {
+            isActive: (match, location) => location.pathname.includes('society')
+        }
     },
     {
         label: 'The Archives',
@@ -16,7 +19,10 @@ const primary = [
     },
     {
         label: 'Our Sponsors',
-        url: '/sponsors'
+        url: '/sponsors/gold',
+        props: {
+            isActive: (match, location) => location.pathname.includes('sponsors')
+        }
     }
 ]
 
@@ -43,10 +49,6 @@ const footer = [
     {
         label: 'Terms & Conditions',
         url: '/terms-and-conditions'
-    },
-    {
-        label: 'Sitemap',
-        url: '/sitemap'
     }
 ]
 

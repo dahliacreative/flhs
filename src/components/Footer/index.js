@@ -61,7 +61,12 @@ const Footer = () => {
                         <li className={styles.item}>© FLHS 2019. Registered charity No. 01234567890</li>
                         <li className={styles.item}>
                             Website by{' '}
-                            <a href="http://www.dahliacreative.com" className={styles.external}>
+                            <a
+                                href="http://www.dahliacreative.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.external}
+                            >
                                 dahliacreative
                             </a>
                         </li>

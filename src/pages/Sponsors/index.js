@@ -11,6 +11,7 @@ import Sponsor from 'components/Sponsor'
 import styles from './styles.module.sass'
 
 const date = new Date()
+const tabs = ['gold', 'silver', 'bronze', 'individual']
 
 const query = gql`
     query Sponsors($transform: ImageTransformOptions!, $date: DateTime!) {
@@ -31,7 +32,7 @@ const query = gql`
     }
 `
 
-const Sponsors = () => {
+const Sponsors = ({ history, match }) => {
     hooks.useMeta('FLHS :: Sponsors')
     const { loading, error, data } = useQuery(query, {
         variables: {
@@ -39,11 +40,14 @@ const Sponsors = () => {
             date
         }
     })
+    const changeTab = i => {
+        history.push(`/sponsors/${tabs[i]}`)
+    }
     return (
         <>
             <Banner id="53vFKuS5TyVixKU1s7obxz" />
             <main>
-                <Tabs>
+                <Tabs active={tabs.findIndex(p => p === match.params.page)} onChange={changeTab}>
                     <Container pad>
                         <Tabs.Navigation>
                             <Tabs.Link>Gold Sponsors</Tabs.Link>
