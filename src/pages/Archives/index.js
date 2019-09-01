@@ -83,9 +83,11 @@ const Archives = ({ location, history }) => {
         })
     }
 
+    const bannerID = query.category ? (data.category ? data.category.banner.sys.id : null) : '6sRxVmIS2xjBgxxi47j9TD'
+
     return (
         <>
-            <Banner id={data.category ? data.category.banner.sys.id : '6sRxVmIS2xjBgxxi47j9TD'} />
+            {bannerID && <Banner id={bannerID} />}
             <main ref={main}>
                 <Container light pad>
                     <div ref={wrapper}>
