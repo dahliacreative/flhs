@@ -46,7 +46,7 @@ const Sponsors = ({ history, match }) => {
     return (
         <>
             <Banner id="53vFKuS5TyVixKU1s7obxz" />
-            <main>
+            <main className="tabs">
                 <Tabs active={tabs.findIndex(p => p === match.params.page)} onChange={changeTab}>
                     <Container pad>
                         <Tabs.Navigation>

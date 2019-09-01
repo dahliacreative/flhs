@@ -54,7 +54,7 @@ const Select = ({ options, onChange, ...props }) => {
     const device = useBreakpoints()
     return device.isTouchDevice ? (
         <div className={styles.select}>
-            <select onChange={e => onChange(e.target.value)} value={props.value.value}>
+            <select onChange={e => onChange(e.target.value)} value={props.value && props.value.value}>
                 {options.map(o => (
                     <option key={o.value} value={o.value}>
                         {o.label}
