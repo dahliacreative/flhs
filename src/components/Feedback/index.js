@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import cx from 'classnames'
 import styles from './styles.module.sass'
 import Select from 'components/Select'
+import Button from 'components/Button'
 
 const Feedback = ({ location: { pathname } }) => {
     const initialState = {
@@ -29,28 +30,39 @@ const Feedback = ({ location: { pathname } }) => {
                 Feedback
             </button>
             <form className={cx([styles.form, 'form'])} data-netlify="true" action={pathname}>
-                <label htmlFor="type">Feedback type</label>
-                <Select
-                    id="type"
-                    options={options}
-                    onChange={v => setState({ ...state, type: v.value })}
-                    value={options.find(o => o.value === state.type)}
-                />
-                <label htmlFor="name">Your name</label>
-                <input
-                    type="text"
-                    id="name"
-                    value={state.name}
-                    onChange={e => setState({ ...state, name: e.target.value })}
-                />
-                <label htmlFor="message">Your Feedback</label>
-                <textarea
-                    id="message"
-                    value={state.message}
-                    onChange={e => setState({ ...state, message: e.target.value })}
-                />
-                <label htmlFor="file">Attachment</label>
-                <input type="file" id="file" onChange={e => setState({ ...state, file: e.target.files[0] })} />
+                <div className="control">
+                    <label htmlFor="type">Feedback type</label>
+                    <Select
+                        id="type"
+                        options={options}
+                        onChange={v => setState({ ...state, type: v.value })}
+                        value={options.find(o => o.value === state.type)}
+                    />
+                </div>
+                <div className="control">
+                    <label htmlFor="name">Your name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        value={state.name}
+                        onChange={e => setState({ ...state, name: e.target.value })}
+                    />
+                </div>
+                <div className="control">
+                    <label htmlFor="message">Your Feedback</label>
+                    <textarea
+                        id="message"
+                        value={state.message}
+                        onChange={e => setState({ ...state, message: e.target.value })}
+                    />
+                </div>
+                <div className="control">
+                    <label htmlFor="file">Attachment</label>
+                    <input type="file" id="file" onChange={e => setState({ ...state, file: e.target.files[0] })} />
+                </div>
+                <Button type="submit" secondary>
+                    Submit Feedback
+                </Button>
             </form>
         </div>
     )

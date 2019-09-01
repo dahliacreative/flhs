@@ -1,29 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './styles.module.sass'
+import cx from 'classnames'
 
-const Button = ({ children, ...props }) => {
-    if (props.onClick) {
-        return (
-            <button className={styles.button} {...props}>
-                {children}
-            </button>
-        )
-    }
+const Button = ({ children, secondary, ...props }) => {
     if (props.href) {
         return (
-            <a className={styles.button} {...props}>
+            <a className={cx([styles.button, secondary && styles.secondary])} {...props}>
                 {children}
             </a>
         )
     }
     if (props.to) {
         return (
-            <Link className={styles.button} {...props}>
+            <Link className={cx([styles.button, secondary && styles.secondary])} {...props}>
                 {children}
             </Link>
         )
     }
+    return (
+        <button className={cx([styles.button, secondary && styles.secondary])} {...props}>
+            {children}
+        </button>
+    )
 }
 
 export default Button

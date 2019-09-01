@@ -63,3 +63,33 @@ main
 +breakpoint(medium)
     body
         font-size: 13px
+
+form
+    input,
+    textarea
+        border: 2px solid transparent
+        font-family: $font-main
+        font-size: 14px
+        display: block
+        border-radius: 100px
+        width: 100%
+        box-sizing: border-box
+        padding: 9px 15px
+        color: $brand-light
+        background-color: #fff
+        transition: .2s
+
+        &:focus
+            outline: none
+            border-color: $brand-secondary
+
+    textarea
+        min-height: 100px
+        border-radius: 10px
+
+    label
+        display: block
+        margin: 0 0 5px 10px
+
+    .control
+        margin-bottom: 20px
