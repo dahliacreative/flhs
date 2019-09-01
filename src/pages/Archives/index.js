@@ -85,7 +85,7 @@ const Archives = ({ location, history }) => {
 
     return (
         <>
-            <Banner id="6sRxVmIS2xjBgxxi47j9TD" />
+            <Banner id={data.category ? data.category.banner.sys.id : '6sRxVmIS2xjBgxxi47j9TD'} />
             <main ref={main}>
                 <Container light pad>
                     <div ref={wrapper}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import cx from 'classnames'
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
@@ -26,6 +26,9 @@ const Banner = ({ id }) => {
     } = useQuery(query, {
         variables: { id, transform: constants.BANNER_IMAGE_DIMENSIONS }
     })
+    useEffect(() => {
+        setLoaded(false)
+    }, [id])
     return (
         <div className={styles.banner}>
             {pageBanner && (

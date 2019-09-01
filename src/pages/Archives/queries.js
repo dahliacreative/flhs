@@ -5,6 +5,11 @@ const category = gql`
     ${RecordFragment}
     query Records($transform: ImageTransformOptions!, $categoryId: String!, $skip: Int!, $limit: Int!) {
         category(id: $categoryId) {
+            banner {
+                sys {
+                    id
+                }
+            }
             linkedFrom {
                 recordCollection(skip: $skip, limit: $limit) {
                     skip
