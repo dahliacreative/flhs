@@ -1,41 +1,72 @@
 @import 'settings/variables.sass'
 
 .feedback
-    +position(fixed, 100% 0 null null)
+    +position(fixed, 50% null null 50%)
     background-color: $brand-dark
-    display: flex
+    box-sizing: border-box
     max-height: calc(100% - 36px)
     max-width: 100%
     min-height: 200px
+    opacity: 0
+    padding: 20px 20px 30px
+    pointer-events: none
+    transform: translate(-50%, -40%)
     transition: .5s $ease-in-out-quint
     width: 400px
     will-change: transform
     z-index: 10
 
     &.open
-        transform: translateY(-100%)
+        opacity: 1
+        pointer-events: auto
+        transform: translate(-50%, -50%)
 
-.form
-    max-height: 100%
-    overflow: auto
-    padding: 20px
-    width: 100%
+    h3
+        border-bottom: 1px solid rgba(#fff, .1)
+        color: #fff
+        font-family: $font-main
+        font-weight: 300
+        letter-spacing: 1px
+        margin: 0 0 20px
+        padding-bottom: 20px
+        text-transform: uppercase
+
+.overlay
+    +position(fixed, 0)
+    background-color: rgba(#000, .8)
+    opacity: 0
+    pointer-events: none
+    transition: .5s $ease-in-out-quint
+    z-index: 10
+
+    &.open
+        opacity: 1
 
 .button
     +focus
-    +position(absolute, null 0 100% null)
-    background-color: $brand-light
+    +position(fixed, null 20px 20px null)
+    +size(40px)
+    align-items: center
+    background-color: $brand-dark
+    border-radius: 50%
     border: none
     color: $brand-secondary
     cursor: pointer
+    display: flex
     font-family: $font-main
     font-size: 14px
     font-weight: 300
+    justify-content: center
     letter-spacing: 2px
-    padding: 10px 20px
+    padding: 0
     text-transform: uppercase
     transform-origin: bottom right
     transition: .3s
+    z-index: 11
 
     +hover
-        background-color: $brand-dark
+        background-color: $brand-light
+
+    svg
+        +size(16px)
+        display: block
