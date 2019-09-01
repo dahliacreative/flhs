@@ -10,7 +10,7 @@ import Banner from 'components/Banner'
 
 const query = gql`
     query Privacy {
-        privacyPolicy(id: "6IdqMro2sgq0HEaqHaTSKJ") {
+        contentPage(id: "4QFYdmHHKC6NM7x1AKJqZk") {
             title
             content {
                 json
@@ -38,7 +38,7 @@ const Privacy = () => {
                                     <div
                                         className="generic"
                                         dangerouslySetInnerHTML={{
-                                            __html: documentToHtmlString(data.privacyPolicy.content.json)
+                                            __html: documentToHtmlString(data.contentPage.content.json)
                                         }}
                                     />
                                 </>

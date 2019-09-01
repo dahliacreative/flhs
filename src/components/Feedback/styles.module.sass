@@ -1,0 +1,39 @@
+@import 'settings/variables.sass'
+
+.feedback
+    +position(fixed, null null 50% 100%)
+    transform: translateY(50%)
+    z-index: 10
+    min-height: 200px
+    width: 500px
+    max-width: calc(100% - 36px)
+    transition: .5s $ease-in-out-quint
+    max-width: 100%
+    background-color: $brand-dark
+    will-change: transform
+
+    &.open
+        transform: translate(-100%, 50%)
+
+.form
+    padding: 20px
+
+.button
+    +focus
+    +position(absolute, 0 calc(100% - 1px) null null)
+    background-color: $brand-light
+    border: none
+    color: $brand-secondary
+    cursor: pointer
+    font-family: $font-main
+    font-size: 14px
+    font-weight: 300
+    letter-spacing: 2px
+    padding: 10px 20px
+    text-transform: uppercase
+    transform-origin: bottom right
+    transform: rotate(-90deg)
+    transition: .3s
+
+    +hover
+        background-color: $brand-dark

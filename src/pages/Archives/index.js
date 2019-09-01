@@ -139,7 +139,7 @@ const Archives = ({ location, history }) => {
                                                 </Grid.Item>
                                             ))}
                                         </Grid>
-                                        {collection.total > 24 && (
+                                        {collection.total > 12 && (
                                             <Pagination
                                                 activePage={parseInt(query.page, 10) || 1}
                                                 onChange={paginate}

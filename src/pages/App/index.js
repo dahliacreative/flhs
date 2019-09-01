@@ -14,6 +14,7 @@ import Society from 'pages/Society'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import Feedback from 'components/Feedback'
 
 import './styles.sass'
 
@@ -37,6 +38,7 @@ const App = () => {
                         <Route exact path="/society/:page" component={Society} />
                     </Switch>
                     <Footer />
+                    <Feedback />
                 </Router>
             </Breakpoints>
         </ApolloProvider>

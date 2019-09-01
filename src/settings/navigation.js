@@ -5,7 +5,7 @@ const primary = [
     },
     {
         label: 'The Society',
-        url: '/society/committee',
+        url: '/society/about',
         props: {
             isActive: (match, location) => location.pathname.includes('society')
         }
