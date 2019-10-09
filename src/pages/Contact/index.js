@@ -13,9 +13,9 @@ const Contact = () => {
             <Banner id="2wOooQpjR5BgLNzefhqSKO" />
             <main>
                 <Container light pad>
-                    <div className="generic">
-                        <Grid columns={device.isMobile ? 1 : 2}>
-                            <Grid.Item>
+                    <Grid columns={device.isMobile ? 1 : 2}>
+                        <Grid.Item>
+                            <div className="generic">
                                 <h3>For Society Enquires</h3>
                                 <p>
                                     Finedon Local History Society
@@ -31,8 +31,10 @@ const Contact = () => {
                                 <p>
                                     <a href="mailto:michael.britton@ntlworld.com">Michael Britton</a>
                                 </p>
-                            </Grid.Item>
-                            <Grid.Item>
+                            </div>
+                        </Grid.Item>
+                        <Grid.Item>
+                            <div className="generic">
                                 <h3>For Website Enquires or Submisssions</h3>
                                 <p>
                                     <a href="mailto:simon@dahliacreative.com">Simon Sturgess</a>
@@ -40,9 +42,9 @@ const Contact = () => {
                                 <p>
                                     <a href="mailto:grahamrsherwood@icloud.com">Graham Sherwood</a>
                                 </p>
-                            </Grid.Item>
-                        </Grid>
-                    </div>
+                            </div>
+                        </Grid.Item>
+                    </Grid>
                 </Container>
             </main>
         </>
