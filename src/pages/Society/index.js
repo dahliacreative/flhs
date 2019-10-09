@@ -1,6 +1,13 @@
 import React from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
+import { useBreakpoints } from 'react-device-breakpoints'
+import { constants, hooks } from 'settings'
 import Tabs from 'components/Tabs'
 import Banner from 'components/Banner'
+import Container from 'components/Container'
+
+import Committee from './committee'
 
 const tabs = ['about', 'members', 'meetings']
 
@@ -11,19 +18,21 @@ const Society = ({ history, match }) => {
     return (
         <>
             <Banner id="4Ff7ywyStIPKlizfjuLhCK" />
-            <main>
+            <main className="tabs">
                 <Tabs active={tabs.findIndex(p => p === match.params.page)} onChange={updateTab}>
-                    <Tabs.Navigation>
-                        <Tabs.Link>About the society</Tabs.Link>
-                        <Tabs.Link>Committee Members</Tabs.Link>
-                        <Tabs.Link>Committee Meetings</Tabs.Link>
-                    </Tabs.Navigation>
+                    <Container pad>
+                        <Tabs.Navigation>
+                            <Tabs.Link>About the society</Tabs.Link>
+                            <Tabs.Link>Committee Members</Tabs.Link>
+                            <Tabs.Link>Newsletters</Tabs.Link>
+                        </Tabs.Navigation>
+                    </Container>
                     <Tabs.Panels>
                         <div>
                             <p>About</p>
                         </div>
                         <div>
-                            <p>Members</p>
+                            <Committee />
                         </div>
                         <div>
                             <p>Meetings</p>

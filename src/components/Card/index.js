@@ -42,6 +42,10 @@ const Image = () => {
             data.setVisible(true)
         }, 100)
     }
+    if (!data.image) {
+        data.setVisible(true)
+        return null
+    }
     return (
         <div className={styles.image}>
             <img
