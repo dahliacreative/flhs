@@ -2,6 +2,7 @@
 
 .banner
     background-color: #000
+    box-sizing: border-box
     display: flex
     flex-direction: column
     height: 45vw
@@ -9,6 +10,7 @@
     max-height: 600px
     min-height: 300px
     overflow: hidden
+    padding-bottom: calc(6vw + 40px)
     transform: translate3d(0,0,0)
 
     &::before,
@@ -28,7 +30,7 @@
             mix-blend-mode: soft-light
 
 .content
-    padding: 0 10px calc(6vw + 40px)
+    padding: 0 10px
     position: relative
     width: 100%
     z-index: 2

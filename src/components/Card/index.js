@@ -28,9 +28,13 @@ const Tag = ({ title, ...props }) => (
     </span>
 )
 
-const Date = () => {
+const Date = ({ live, format = 'DD/MM/YYYY' }) => {
     const data = useContext(Context)
-    return <p className={styles.date}>Added {dayjs(data.sys.firstPublishedAt).format('DD/MM/YYYY')}</p>
+    return (
+        <p className={styles.date}>
+            {!live && 'Added'} {dayjs(data.sys.firstPublishedAt).format(format)}
+        </p>
+    )
 }
 
 const CommentCount = ({ children }) => <div className={styles.count}>{children}</div>
@@ -42,7 +46,7 @@ const Image = () => {
             data.setVisible(true)
         }, 100)
     }
-    if (!data.image) {
+    if (!data.image && !data.attachment) {
         data.setVisible(true)
         return null
     }

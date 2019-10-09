@@ -58,7 +58,7 @@ const Footer = () => {
                 <Container>
                     <ul className={styles.list}>
                         {GenerateNavigation(navigation.footer, styles, Link)}
-                        <li className={styles.item}>© FLHS 2019. Registered charity No. 01234567890</li>
+                        <li className={styles.item}>© FLHS 2019. Registered charity No. 1096719</li>
                         <li className={styles.item}>
                             Website by{' '}
                             <a

@@ -24,7 +24,7 @@ const query = gql`
 `
 
 const Record = ({ match, history }) => {
-    const [title, updateTitle] = useState('FLHS :: The Archives')
+    const [title, updateTitle] = useState('FLHS :: Archive')
     const [isLoaded, setLoaded] = useState(false)
     hooks.useMeta(title)
     const {
@@ -37,7 +37,7 @@ const Record = ({ match, history }) => {
             transform: constants.RECORD_IMAGE_DIMENSIONS
         },
         onCompleted: data => {
-            updateTitle(`FLHS :: Archive :: Record :: ${data.record.title}`)
+            updateTitle(`FLHS :: Archive :: ${data.record.title}`)
         }
     })
     hooks.useMeta(title)

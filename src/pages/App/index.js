@@ -11,6 +11,8 @@ import Sponsors from 'pages/Sponsors'
 import Privacy from 'pages/Privacy'
 import Terms from 'pages/Terms'
 import Society from 'pages/Society'
+import Contact from 'pages/Contact'
+import Events from 'pages/Events'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -35,6 +37,8 @@ const App = () => {
                         <Route exact path="/sponsors/:page" component={Sponsors} />
                         <Route exact path="/privacy-policy" component={Privacy} />
                         <Route exact path="/terms-and-conditions" component={Terms} />
+                        <Route exact path="/contact" component={Contact} />
+                        <Route exact path="/events" component={Events} />
                         <Route exact path="/society/:page" component={Society} />
                     </Switch>
                     <Footer />

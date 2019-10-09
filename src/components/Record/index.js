@@ -33,6 +33,7 @@ const RecordFragment = gql`
 const Record = ({ location, hideCategories, categoryClick, ...props }) => (
     <Card {...props}>
         <Card.Link to={`/archives/records/${props.sys.id}`}>
+            {console.log(props)}
             {props.attachment.contentType.includes('image') ? <Card.Image /> : 'Attachment'}
             <Card.CommentCount>
                 <CommentCount
