@@ -14,6 +14,8 @@ import Society from 'pages/Society'
 import Contact from 'pages/Contact'
 import Events from 'pages/Events'
 import Event from 'pages/Event'
+import Articles from 'pages/Articles'
+import Article from 'pages/Article'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -42,6 +44,8 @@ const App = () => {
                         <Route exact path="/events" component={Events} />
                         <Route exact path="/society/:page" component={Society} />
                         <Route exact path="/events/:id" component={Event} />
+                        <Route exact path="/news" component={Articles} />
+                        <Route exact path="/news/:id" component={Article} />
                     </Switch>
                     <Footer />
                     <Feedback />

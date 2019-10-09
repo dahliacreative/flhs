@@ -7,6 +7,15 @@ const BANNER_IMAGE_DIMENSIONS = {
     format: 'JPG'
 }
 
+const AVATAR_IMAGE_DIMENSIONS = {
+    width: 100,
+    height: 100,
+    resizeStrategy: 'FILL',
+    resizeFocus: 'CENTER',
+    quality: 40,
+    format: 'JPG'
+}
+
 const CARD_IMAGE_DIMENSIONS = {
     width: 760,
     height: 440,
@@ -78,5 +87,6 @@ export default {
     DISQUS_SHORTNAME,
     RECORD_IMAGE_DIMENSIONS,
     SPONSOR_IMAGE_DIMENSIONS,
-    SPONSOR_LARGE_IMAGE_DIMENSIONS
+    SPONSOR_LARGE_IMAGE_DIMENSIONS,
+    AVATAR_IMAGE_DIMENSIONS
 }

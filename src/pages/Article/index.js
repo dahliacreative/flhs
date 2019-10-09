@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost'
 import dayjs from 'dayjs'
 import { DiscussionEmbed } from 'disqus-react'
 import { constants, hooks } from 'settings'
-import { EventFragment } from 'components/Event'
+import { ArticleFragment } from 'components/Article'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
 import Container from 'components/Container'
@@ -13,10 +13,10 @@ import Banner from 'components/Banner'
 import styles from './styles.module.sass'
 
 const query = gql`
-    ${EventFragment}
-    query Event($id: String!, $transform: ImageTransformOptions!) {
-        event(id: $id) {
-            ...EventFragment
+    ${ArticleFragment}
+    query Article($id: String!, $transform: ImageTransformOptions!, $avatar: ImageTransformOptions!) {
+        article(id: $id) {
+            ...ArticleFragment
             content {
                 json
             }
@@ -24,20 +24,21 @@ const query = gql`
     }
 `
 
-const Event = ({ match, history }) => {
-    const [title, updateTitle] = useState('FLHS :: Event')
+const Article = ({ match, history }) => {
+    const [title, updateTitle] = useState('FLHS :: News')
     hooks.useMeta(title)
     const {
         loading,
         error,
-        data: { event }
+        data: { article }
     } = useQuery(query, {
         variables: {
             id: match.params.id,
-            transform: constants.BANNER_IMAGE_DIMENSIONS
+            transform: constants.BANNER_IMAGE_DIMENSIONS,
+            avatar: constants.AVATAR_IMAGE_DIMENSIONS
         },
         onCompleted: data => {
-            updateTitle(`FLHS :: Events :: ${data.event.title}`)
+            updateTitle(`FLHS :: News :: ${data.article.title}`)
         }
     })
     hooks.useMeta(title)
@@ -54,30 +55,31 @@ const Event = ({ match, history }) => {
                             <Banner
                                 banner={{
                                     bannerImage: {
-                                        url: event.banner.url
+                                        url: article.banner.url
                                     }
                                 }}
                             />
                             <main>
                                 <Container light pad>
-                                    <h1 className={styles.title}>{event.title}</h1>
-                                    <p className={styles.date}>
-                                        {dayjs(event.date).format('ddd DD MMM YYYY')} at{' '}
-                                        {dayjs(event.date).format('HH:mm')}
-                                    </p>
+                                    <div className="generic">
+                                        <h1 className={styles.title}>{article.title}</h1>
+                                        <p className={styles.date}>
+                                            Published {dayjs(article.sys.firstPublishedAt).format('ddd DD MMM YYYY')}
+                                        </p>
+                                    </div>
                                     <div
                                         className="generic"
                                         dangerouslySetInnerHTML={{
-                                            __html: documentToHtmlString(event.content.json)
+                                            __html: documentToHtmlString(article.content.json)
                                         }}
                                     />
                                     <div className={styles.comments}>
                                         <DiscussionEmbed
                                             shortname={constants.DISQUS_SHORTNAME}
                                             config={{
-                                                url: `${window.location.origin}/events/${event.sys.id}`,
-                                                identifier: event.sys.id,
-                                                title: event.title
+                                                url: `${window.location.origin}/news/${article.sys.id}`,
+                                                identifier: article.sys.id,
+                                                title: article.title
                                             }}
                                         />
                                     </div>
@@ -91,4 +93,4 @@ const Event = ({ match, history }) => {
     )
 }
 
-export default Event
+export default Article
