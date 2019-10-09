@@ -33,7 +33,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
             <div className={cx([styles.overlay, isOpen && styles.open])} />
             <div className={cx([styles.feedback, isOpen && styles.open])}>
                 <h3>Leave us some feedback</h3>
-                <form className={cx([styles.form, 'form'])} data-netlify="true" action={pathname} method="POST">
+                <form className={cx([styles.form, 'form'])} data-netlify="true" method="POST">
                     <div className="control">
                         <Select
                             placeholder="Feedback type"
