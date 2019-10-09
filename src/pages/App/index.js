@@ -13,6 +13,7 @@ import Terms from 'pages/Terms'
 import Society from 'pages/Society'
 import Contact from 'pages/Contact'
 import Events from 'pages/Events'
+import Event from 'pages/Event'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -40,6 +41,7 @@ const App = () => {
                         <Route exact path="/contact" component={Contact} />
                         <Route exact path="/events" component={Events} />
                         <Route exact path="/society/:page" component={Society} />
+                        <Route exact path="/events/:id" component={Event} />
                     </Switch>
                     <Footer />
                     <Feedback />

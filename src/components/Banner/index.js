@@ -19,7 +19,7 @@ const query = gql`
     }
 `
 
-const Banner = ({ id }) => {
+const PageBanner = ({ id }) => {
     const [hasLoaded, setLoaded] = useState(false)
     const {
         data: { pageBanner }
@@ -58,5 +58,36 @@ const Banner = ({ id }) => {
         </div>
     )
 }
+
+const RecordBanner = ({ banner }) => {
+    const [hasLoaded, setLoaded] = useState(false)
+    return (
+        <div className={styles.banner}>
+            <img
+                src={banner.bannerImage.url}
+                alt={banner.caption}
+                className={cx([styles.image, hasLoaded && styles.show])}
+                onLoad={() => setLoaded(true)}
+            />
+            {banner.page && (
+                <div className={styles.title}>
+                    <Container>
+                        <h1>{banner.page}</h1>
+                    </Container>
+                </div>
+            )}
+            {(banner.caption || banner.credit) && (
+                <div className={styles.content}>
+                    <Container>
+                        {banner.caption && <p className={styles.caption}>{banner.caption}</p>}
+                        {banner.credit && <p className={styles.credit}>{banner.credit}</p>}
+                    </Container>
+                </div>
+            )}
+        </div>
+    )
+}
+
+const Banner = ({ id, banner }) => (id ? <PageBanner id={id} /> : banner ? <RecordBanner banner={banner} /> : null)
 
 export default Banner

@@ -1,6 +1,8 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
+import { constants } from 'settings'
 import Card from 'components/Card'
+import { CommentCount } from 'disqus-react'
 
 const EventFragment = gql`
     fragment EventFragment on Event {
@@ -28,6 +30,16 @@ const Event = props => {
         <Card {...data}>
             <Card.Link to={`/events/${props.sys.id}`}>
                 <Card.Image />
+                <Card.CommentCount>
+                    <CommentCount
+                        shortname={constants.DISQUS_SHORTNAME}
+                        config={{
+                            identifier: props.sys.id,
+                            url: `${window.location.origin}/events/${props.sys.id}`,
+                            title: props.title
+                        }}
+                    />
+                </Card.CommentCount>
                 <Card.Title />
                 <Card.Date live format="ddd DD MMM YYYY - HH:mm" />
             </Card.Link>
