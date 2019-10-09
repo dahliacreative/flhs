@@ -8,8 +8,9 @@ import Banner from 'components/Banner'
 import Container from 'components/Container'
 
 import Committee from './committee'
+import Newsletters from './newsletters'
 
-const tabs = ['about', 'members', 'meetings']
+const tabs = ['about', 'members', 'newsletters']
 
 const Society = ({ history, match }) => {
     const updateTab = i => {
@@ -35,7 +36,7 @@ const Society = ({ history, match }) => {
                             <Committee />
                         </div>
                         <div>
-                            <p>Meetings</p>
+                            <Newsletters />
                         </div>
                     </Tabs.Panels>
                 </Tabs>

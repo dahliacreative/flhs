@@ -3,25 +3,25 @@ import { useQuery } from '@apollo/react-hooks'
 import { useBreakpoints } from 'react-device-breakpoints'
 import { constants, hooks } from 'settings'
 import { gql } from 'apollo-boost'
-import Member, { MemberFragment } from 'components/Member'
+import Newsletter, { NewsletterFragment } from 'components/Newsletter'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
 import Container from 'components/Container'
 import Grid from 'components/Grid'
 
 const query = gql`
-    ${MemberFragment}
-    query CommitteeMembers($transform: ImageTransformOptions) {
-        committeeMemberCollection(order: sys_publishedAt_ASC) {
+    ${NewsletterFragment}
+    query Newsletters {
+        newsletterCollection {
             items {
-                ...MemberFragment
+                ...NewsletterFragment
             }
         }
     }
 `
 
-const Committee = () => {
-    hooks.useMeta('FLHS :: Society :: Committee')
+const Newsletters = () => {
+    hooks.useMeta('FLHS :: Society :: Newsletters')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
         vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
@@ -36,9 +36,9 @@ const Committee = () => {
                         <Loading />
                     ) : (
                         <Grid columns={device.isMobile ? 1 : device.isLargeMobile || device.isTablet ? 2 : 3}>
-                            {data.committeeMemberCollection.items.map(member => (
-                                <Grid.Item key={member.sys.id}>
-                                    <Member {...member} />
+                            {data.newsletterCollection.items.map(newsletter => (
+                                <Grid.Item key={newsletter.sys.id}>
+                                    <Newsletter {...newsletter} />
                                 </Grid.Item>
                             ))}
                         </Grid>
@@ -49,4 +49,4 @@ const Committee = () => {
     )
 }
 
-export default Committee
+export default Newsletters

@@ -25,7 +25,6 @@ const Member = props => {
             url: require('images/placeholder-member.jpg')
         }
     }
-    console.log(props)
     return (
         <Card {...data}>
             <Card.Image />
