@@ -10,6 +10,7 @@ import Loading from 'components/Loading'
 import Error from 'components/Error'
 import Container from 'components/Container'
 import Banner from 'components/Banner'
+import Author from 'components/Author'
 import styles from './styles.module.sass'
 
 const query = gql`
@@ -66,6 +67,7 @@ const Article = ({ match, history }) => {
                                         <p className={styles.date}>
                                             Published {dayjs(article.sys.firstPublishedAt).format('ddd DD MMM YYYY')}
                                         </p>
+                                        <Author {...article.author} />
                                     </div>
                                     <div
                                         className="generic"
