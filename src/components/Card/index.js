@@ -61,10 +61,18 @@ const Image = () => {
     )
 }
 
-const Link = ({ children, to }) => (
-    <RouterLink to={to} className={styles.link}>
-        {children}
-    </RouterLink>
+const Link = ({ children, to, href, ...props }) => (
+    <>
+        {href ? (
+            <a href={href} className={styles.link} {...props}>
+                {children}
+            </a>
+        ) : (
+            <RouterLink to={to} className={styles.link} {...props}>
+                {children}
+            </RouterLink>
+        )}
+    </>
 )
 
 Card.Title = Title

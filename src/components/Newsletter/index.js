@@ -23,7 +23,7 @@ const Newsletter = props => {
     }
     return (
         <Card {...data}>
-            <Card.Link href={props.upload.url}>
+            <Card.Link href={props.upload.url} target="_blank" rel="noopener noreferrer" download>
                 <Card.Image />
                 <Card.Title />
             </Card.Link>
