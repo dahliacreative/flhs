@@ -35,7 +35,7 @@ const Article = ({ match, history }) => {
     } = useQuery(query, {
         variables: {
             id: match.params.id,
-            transform: constants.BANNER_IMAGE_DIMENSIONS,
+            transform: constants.CARD_IMAGE_DIMENSIONS,
             avatar: constants.AVATAR_IMAGE_DIMENSIONS
         },
         onCompleted: data => {

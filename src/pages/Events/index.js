@@ -12,7 +12,7 @@ import Grid from 'components/Grid'
 
 const query = gql`
     ${EventFragment}
-    query Events($transform: ImageTransformOptions) {
+    query Events($transform: ImageTransformOptions!) {
         eventCollection(order: date_ASC) {
             items {
                 ...EventFragment
@@ -25,7 +25,7 @@ const Events = ({ client }) => {
     hooks.useMeta('FLHS :: Events')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
-        vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
+        variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
     })
     return (
         <>

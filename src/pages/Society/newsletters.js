@@ -24,7 +24,7 @@ const Newsletters = () => {
     hooks.useMeta('FLHS :: Society :: Newsletters')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
-        vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
+        variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
     })
     return (
         <Container light pad>

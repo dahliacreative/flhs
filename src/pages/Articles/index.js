@@ -12,7 +12,7 @@ import Grid from 'components/Grid'
 
 const query = gql`
     ${ArticleFragment}
-    query Articles($transform: ImageTransformOptions, $avatar: ImageTransformOptions) {
+    query Articles($transform: ImageTransformOptions!, $avatar: ImageTransformOptions!) {
         articleCollection {
             items {
                 ...ArticleFragment
@@ -22,12 +22,11 @@ const query = gql`
 `
 
 const Articles = ({ client }) => {
-    hooks.useMeta('FLHS :: Articles')
+    hooks.useMeta('FLHS :: News')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
-        vairables: { transform: constants.CARD_IMAGE_DIMENSIONS, avatar: constants.AVATAR_IMAGE_DIMENSIONS }
+        variables: { transform: constants.CARD_IMAGE_DIMENSIONS, avatar: constants.AVATAR_IMAGE_DIMENSIONS }
     })
-    console.log(data)
     return (
         <>
             <Banner id="1Hm5XZqqZanTULOcjiVOjI" />

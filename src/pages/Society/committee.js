@@ -24,7 +24,7 @@ const Committee = () => {
     hooks.useMeta('FLHS :: Society :: Committee')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
-        vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
+        variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
     })
     return (
         <Container light pad>

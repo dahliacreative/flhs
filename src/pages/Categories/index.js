@@ -12,7 +12,7 @@ import Grid from 'components/Grid'
 
 const query = gql`
     ${CategoryFragment}
-    query Categories($transform: ImageTransformOptions) {
+    query Categories($transform: ImageTransformOptions!) {
         categoryCollection {
             items {
                 ...CategoryFragment
@@ -25,7 +25,7 @@ const Categories = ({ client }) => {
     hooks.useMeta('FLHS :: Archive :: Categories')
     const device = useBreakpoints()
     const { loading, error, data } = useQuery(query, {
-        vairables: { transform: constants.CARD_IMAGE_DIMENSIONS }
+        variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
     })
     return (
         <>
