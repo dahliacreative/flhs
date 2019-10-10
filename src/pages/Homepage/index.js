@@ -10,7 +10,7 @@ const Homepage = () => {
     hooks.useMeta('FLHS :: Home')
     return (
         <>
-            <Banner id="2czKBE4gEnYEgEJasstKMP" />
+            <Banner id="2czKBE4gEnYEgEJasstKMP" resize="BOTTOM" />
             <main>
                 <Container light flat>
                     <EventPartial />

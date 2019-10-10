@@ -19,13 +19,14 @@ const query = gql`
     }
 `
 
-const PageBanner = ({ id }) => {
+const PageBanner = ({ id, resize = 'CENTER' }) => {
     const [hasLoaded, setLoaded] = useState(false)
     const [scroll, updateScroll] = useState(0)
+    const transform = { ...constants.BANNER_IMAGE_DIMENSIONS, resizeFocus: resize }
     const {
         data: { pageBanner }
     } = useQuery(query, {
-        variables: { id, transform: constants.BANNER_IMAGE_DIMENSIONS }
+        variables: { id, transform }
     })
     const setScroll = () => {
         updateScroll(window.scrollY)
@@ -112,6 +113,7 @@ const RecordBanner = ({ banner }) => {
     )
 }
 
-const Banner = ({ id, banner }) => (id ? <PageBanner id={id} /> : banner ? <RecordBanner banner={banner} /> : null)
+const Banner = ({ id, banner, ...props }) =>
+    id ? <PageBanner id={id} {...props} /> : banner ? <RecordBanner banner={banner} {...props} /> : null
 
 export default Banner
