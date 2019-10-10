@@ -21,11 +21,19 @@ const query = gql`
 
 const PageBanner = ({ id }) => {
     const [hasLoaded, setLoaded] = useState(false)
+    const [scroll, updateScroll] = useState(0)
     const {
         data: { pageBanner }
     } = useQuery(query, {
         variables: { id, transform: constants.BANNER_IMAGE_DIMENSIONS }
     })
+    const setScroll = () => {
+        updateScroll(window.scrollY)
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', setScroll, { passive: true })
+        return () => window.removeEventListener('scroll', setScroll, { passive: true })
+    }, [])
     useEffect(() => {
         setLoaded(false)
     }, [id])
@@ -38,6 +46,7 @@ const PageBanner = ({ id }) => {
                         alt={pageBanner.caption}
                         className={cx([styles.image, hasLoaded && styles.show])}
                         onLoad={() => setLoaded(true)}
+                        style={{ transform: `translate3d(-50%, ${scroll / 2}px, 0)` }}
                     />
 
                     <div className={styles.title}>
