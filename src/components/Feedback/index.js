@@ -10,7 +10,6 @@ const FeedbackForm = ({ location: { pathname } }) => {
     const initialState = {
         type: '',
         name: '',
-        file: {},
         page: pathname,
         message: ''
     }
@@ -25,7 +24,6 @@ const FeedbackForm = ({ location: { pathname } }) => {
         toggle(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
-    console.log(state)
     return (
         <>
             <button className={styles.button} onClick={() => toggle(!isOpen)}>
