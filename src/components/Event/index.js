@@ -13,6 +13,7 @@ const EventFragment = gql`
         }
         sys {
             id
+            firstPublishedAt
         }
     }
 `

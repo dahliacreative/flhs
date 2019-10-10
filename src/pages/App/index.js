@@ -16,6 +16,7 @@ import Events from 'pages/Events'
 import Event from 'pages/Event'
 import Articles from 'pages/Articles'
 import Article from 'pages/Article'
+import Homepage from 'pages/Homepage'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -34,6 +35,7 @@ const App = () => {
                 <Router>
                     <Header />
                     <Switch>
+                        <Route exact path="/" component={Homepage} />
                         <Route exact path="/archives" component={Archives} />
                         <Route exact path="/archives/categories" component={Categories} />
                         <Route exact path="/archives/records/:id" component={Record} />

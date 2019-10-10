@@ -1,0 +1,47 @@
+@import 'settings/variables.sass'
+
+.title
+    font-size: 28px
+    letter-spacing: 1px
+    font-family: $font-main
+    text-transform: uppercase
+    font-weight: 300
+    color: $brand-medium
+    margin: 0 0 30px
+
+    &.center
+        text-align: center
+
+    +breakpoint(large)
+        font-size: 24px
+        margin-bottom: 20px
+
+    +breakpoint(medium)
+        font-size: 20px
+
+    +breakpoint(small)
+        font-size: 18px
+
+.actions
+    justify-content: center
+    margin-top: 20px
+    padding-top: 20px
+    border-top: 1px solid $background-color
+    display: flex
+    align-items: center
+
+    > *
+        margin: 0 10px
+
+    +breakpoint(small)
+        display: block
+        padding-top: 10px
+        margin-top: 10px
+
+        > *
+            display: block
+            margin: 10px 0
+            text-align: center
+
+            &:last-child
+                margin-bottom: 0
