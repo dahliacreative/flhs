@@ -10,7 +10,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
     const initialState = {
         type: '',
         name: '',
-        file: '',
+        file: {},
         page: pathname,
         message: ''
     }
@@ -25,6 +25,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
         toggle(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
+    console.log(state)
     return (
         <>
             <button className={styles.button} onClick={() => toggle(!isOpen)}>
@@ -66,12 +67,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
                         />
                     </div>
                     <div className="control">
-                        <input
-                            type="file"
-                            id="file"
-                            name="file"
-                            onChange={e => setState({ ...state, file: e.target.files[0] })}
-                        />
+                        <input type="file" id="file" name="file" />
                     </div>
                     <div className="control actions">
                         <Button type="button" onClick={() => toggle(false)}>
