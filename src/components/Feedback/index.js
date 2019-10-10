@@ -35,6 +35,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
                 <h3>Leave us some feedback</h3>
                 <form className={cx([styles.form, 'form'])} netlify method="POST" name="Feedback">
                     <input type="hidden" id="page" name="page" value={pathname} />
+                    <input type="hidden" name="form-name" value="Feedback" />
                     <div className="control">
                         <Select
                             placeholder="Feedback type"

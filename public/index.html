@@ -26,6 +26,19 @@
         <title>React App</title>
     </head>
     <body class="show-hovers">
+        <!-- Netlify Form -->
+        <form netlify method="POST" name="Feedback" netlify-honeypot="bot-field" hidden>
+            <select name="type" id="type">
+                <option value="generic">General</option>
+                <option value="specific">Specific</option>
+            </select>
+            <input type="hidden" name="page" id="page" />
+            <input type="text" id="name" name="name" />
+            <textarea id="message" name="message"></textarea>
+            <input type="file" id="file" name="file" />
+            <button type="submit">Submit</button>
+        </form>
+
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
         <!--
