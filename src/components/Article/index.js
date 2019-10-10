@@ -3,7 +3,6 @@ import { gql } from 'apollo-boost'
 import { constants } from 'settings'
 import Card from 'components/Card'
 import { CommentCount } from 'disqus-react'
-import Author from 'components/Author'
 
 const ArticleFragment = gql`
     fragment ArticleFragment on Article {

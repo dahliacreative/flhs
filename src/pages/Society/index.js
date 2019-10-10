@@ -1,8 +1,4 @@
 import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
-import { useBreakpoints } from 'react-device-breakpoints'
-import { constants, hooks } from 'settings'
 import Tabs from 'components/Tabs'
 import Banner from 'components/Banner'
 import Container from 'components/Container'
