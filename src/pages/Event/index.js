@@ -63,8 +63,7 @@ const Event = ({ match, history }) => {
                                     <div className="generic">
                                         <h1 className={styles.title}>{event.title}</h1>
                                         <p className={styles.date}>
-                                            {dayjs(event.date).format('ddd DD MMM YYYY')} at{' '}
-                                            {dayjs(event.date).format('HH:mm')}
+                                            {dayjs(event.date).format('ddd DD MMM YYYY, hh:mma')}
                                         </p>
                                     </div>
                                     <div

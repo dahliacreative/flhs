@@ -9,6 +9,9 @@ import Loading from 'components/Loading'
 import Error from 'components/Error'
 import Button from 'components/Button'
 import styles from './styles.module.sass'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 const query = gql`
     ${EventFragment}
@@ -52,6 +55,16 @@ const EventPartial = ({ client }) => {
                                         __html: documentToHtmlString(event.content.json)
                                     }}
                                 />
+                                {event.date && (
+                                    <>
+                                        <h5>Date / Time</h5>
+                                        <p>
+                                            {dayjs(event.date)
+                                                .utc()
+                                                .format('ddd DD MMM YYYY, hh:mma')}
+                                        </p>
+                                    </>
+                                )}
                                 {event.location && (
                                     <>
                                         <h5>Location</h5>

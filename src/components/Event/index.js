@@ -46,7 +46,7 @@ const Event = props => {
                     />
                 </Card.CommentCount>
                 <Card.Title />
-                <Card.Date live format="ddd DD MMM YYYY - HH:mm" />
+                <Card.Date live format="ddd DD MMM YYYY, hh:mma" />
             </Card.Link>
         </Card>
     )
