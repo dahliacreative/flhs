@@ -45,3 +45,109 @@
 
             &:last-child
                 margin-bottom: 0
+
+.feature
+    display: flex
+
+    > *
+        width: 50%
+
+    +breakpoint(medium)
+        display: block
+
+        > *
+            width: 100%
+
+        .featureDetail
+            padding: 20px
+
+        .featureImage
+            height: 50vw
+
+.featureDetail
+    box-sizing: border-box
+    padding: 4vw
+    font-size: 14px
+    font-family: $font-main
+    line-height: 1.4
+
+    \:global(.generic)
+        font-size: 14px
+
+    h3, h4, h5
+        font-family: $font-main
+        text-transform: uppercase
+        font-weight: 300
+        letter-spacing: 1px
+
+    h3
+        font-size: 30px
+        margin: 0 0 30px
+        letter-spacing: 2px
+        
+    h4
+        font-size: 20px
+        margin: 0
+
+    h5
+        font-size: 16px
+        margin: 0
+
+    &.dark
+        background-color: $brand-light
+        color: #fff
+        font-weight: 300
+
+        h3
+            font-weight: 100
+
+        .actions
+            border-color: rgba(#fff, .1)
+
+        p
+           color: rgba(#fff, .5)
+
+        \:global(.generic)
+            color: rgba(#fff, .5)
+
+    +breakpoint(large)
+        h3
+            font-size: 24px
+            margin-bottom: 20px
+        h4
+            font-size: 18px
+        h5
+            font-size: 14px
+
+    +breakpoint(medium)
+        h3
+            font-size: 20px
+        h4
+            font-size: 16px
+        h5
+            font-size: 13px
+
+.featureImage
+    position: relative
+
+    img
+        +position(absolute, 0 null null 0)
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+    &::before,
+    &::after
+        +position(absolute, 0)
+        background-color: rgba(#002F59, .5)
+        content: ""
+        mix-blend-mode: lighten
+        z-index: 1
+        
+
+    &::after
+        display: none
+        background-color: rgba(#00172C, .5)
+        @supports(mix-blend-mode: soft-light)
+            display: block
+            mix-blend-mode: soft-light

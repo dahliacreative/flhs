@@ -25,6 +25,15 @@ const CARD_IMAGE_DIMENSIONS = {
     format: 'JPG'
 }
 
+const FEATURE_IMAGE_DIMENSIONS = {
+    width: 1280,
+    height: 990,
+    resizeStrategy: 'FILL',
+    resizeFocus: 'FACES',
+    quality: 30,
+    format: 'JPG'
+}
+
 const RECORD_IMAGE_DIMENSIONS = {
     width: 1845,
     quality: 40,
@@ -88,5 +97,6 @@ export default {
     RECORD_IMAGE_DIMENSIONS,
     SPONSOR_IMAGE_DIMENSIONS,
     SPONSOR_LARGE_IMAGE_DIMENSIONS,
-    AVATAR_IMAGE_DIMENSIONS
+    AVATAR_IMAGE_DIMENSIONS,
+    FEATURE_IMAGE_DIMENSIONS
 }

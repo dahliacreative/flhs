@@ -15,7 +15,6 @@ const removeHoverClass = () => {
 }
 
 const handleEvents = action => () => {
-    console.log(action)
     document[action]('mousedown', dettachFocusClass)
     document[action]('keyup', attachFocusClass)
     document[action]('touchstart', removeHoverClass)

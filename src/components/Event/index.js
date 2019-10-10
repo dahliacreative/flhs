@@ -8,6 +8,10 @@ const EventFragment = gql`
     fragment EventFragment on Event {
         title
         date
+        membersPrice
+        nonMembersPrice
+        location
+        speaker
         banner {
             url(transform: $transform)
         }

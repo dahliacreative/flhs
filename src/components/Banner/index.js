@@ -42,14 +42,14 @@ const PageBanner = ({ id }) => {
         <div className={styles.banner}>
             {pageBanner && (
                 <>
-                    <img
-                        src={pageBanner.bannerImage.url}
-                        alt={pageBanner.caption}
-                        className={cx([styles.image, hasLoaded && styles.show])}
-                        onLoad={() => setLoaded(true)}
-                        style={{ transform: `translate3d(-50%, ${scroll / 2}px, 0)` }}
-                    />
-
+                    <div className={styles.parallax} style={{ transform: `translate3d(0, ${scroll / 2}px, 0)` }}>
+                        <img
+                            src={pageBanner.bannerImage.url}
+                            alt={pageBanner.caption}
+                            className={cx([styles.image, hasLoaded && styles.show])}
+                            onLoad={() => setLoaded(true)}
+                        />
+                    </div>
                     <div className={styles.title}>
                         <Container>
                             <h1>{pageBanner.page}</h1>
@@ -71,14 +71,28 @@ const PageBanner = ({ id }) => {
 
 const RecordBanner = ({ banner }) => {
     const [hasLoaded, setLoaded] = useState(false)
+    const [scroll, updateScroll] = useState(0)
+    const setScroll = () => {
+        updateScroll(window.scrollY)
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', setScroll, { passive: true })
+        return () => window.removeEventListener('scroll', setScroll, { passive: true })
+    }, [])
+    useEffect(() => {
+        setLoaded(false)
+        setScroll()
+    }, [banner])
     return (
-        <div className={styles.banner}>
-            <img
-                src={banner.bannerImage.url}
-                alt={banner.caption}
-                className={cx([styles.image, hasLoaded && styles.show])}
-                onLoad={() => setLoaded(true)}
-            />
+        <div className={styles.banner} style={{ transform: `translate3d(0, ${scroll / 2}px, 0)` }}>
+            <div className={styles.parallax}>
+                <img
+                    src={banner.bannerImage.url}
+                    alt={banner.caption}
+                    className={cx([styles.image, hasLoaded && styles.show])}
+                    onLoad={() => setLoaded(true)}
+                />
+            </div>
             {banner.page && (
                 <div className={styles.title}>
                     <Container>

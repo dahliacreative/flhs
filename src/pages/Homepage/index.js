@@ -4,6 +4,7 @@ import Container from 'components/Container'
 import Banner from 'components/Banner'
 
 import NewsPartial from './news'
+import EventPartial from './event'
 
 const Homepage = () => {
     hooks.useMeta('FLHS :: Home')
@@ -12,6 +13,7 @@ const Homepage = () => {
             <Banner id="2czKBE4gEnYEgEJasstKMP" />
             <main>
                 <Container light flat>
+                    <EventPartial />
                     <NewsPartial />
                 </Container>
             </main>
