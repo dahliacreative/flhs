@@ -34,10 +34,12 @@ const FeedbackForm = ({ location: { pathname } }) => {
             <div className={cx([styles.feedback, isOpen && styles.open])}>
                 <h3>Leave us some feedback</h3>
                 <form className={cx([styles.form, 'form'])} netlify method="POST" name="Feedback">
+                    <input type="hidden" id="page" name="page" value={pathname} />
                     <div className="control">
                         <Select
                             placeholder="Feedback type"
                             id="type"
+                            name="type"
                             options={options}
                             onChange={v => setState({ ...state, type: v.value })}
                             value={options.find(o => o.value === state.type)}
@@ -48,6 +50,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
                             placeholder="Your name"
                             type="text"
                             id="name"
+                            name="name"
                             value={state.name}
                             onChange={e => setState({ ...state, name: e.target.value })}
                         />
@@ -56,12 +59,18 @@ const FeedbackForm = ({ location: { pathname } }) => {
                         <textarea
                             placeholder="Your feedback"
                             id="message"
+                            name="message"
                             value={state.message}
                             onChange={e => setState({ ...state, message: e.target.value })}
                         />
                     </div>
                     <div className="control">
-                        <input type="file" id="file" onChange={e => setState({ ...state, file: e.target.files[0] })} />
+                        <input
+                            type="file"
+                            id="file"
+                            name="file"
+                            onChange={e => setState({ ...state, file: e.target.files[0] })}
+                        />
                     </div>
                     <div className="control actions">
                         <Button type="button" onClick={() => toggle(false)}>
