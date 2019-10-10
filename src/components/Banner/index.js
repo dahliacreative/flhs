@@ -31,9 +31,12 @@ const PageBanner = ({ id }) => {
         updateScroll(window.scrollY)
     }
     useEffect(() => {
-        setLoaded(false)
         window.addEventListener('scroll', setScroll, { passive: true })
         return () => window.removeEventListener('scroll', setScroll, { passive: true })
+    }, [])
+    useEffect(() => {
+        setLoaded(false)
+        setScroll()
     }, [id])
     return (
         <div className={styles.banner}>
