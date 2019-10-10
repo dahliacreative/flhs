@@ -68,7 +68,7 @@ const FeedbackForm = ({ location: { pathname } }) => {
             <button className={styles.button} onClick={isOpen ? close : () => toggle(true)}>
                 <Feedback />
             </button>
-            <div className={cx([styles.overlay, isOpen && styles.open])} />
+            <div className={cx([styles.overlay, isOpen && styles.open])} onClick={close} />
             <div className={cx([styles.feedback, isOpen && styles.open])}>
                 <h3>Leave us some feedback</h3>
                 {isLoading ? (
