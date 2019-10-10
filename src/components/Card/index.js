@@ -3,6 +3,8 @@ import { Link as RouterLink } from 'react-router-dom'
 import styles from './styles.module.sass'
 import cx from 'classnames'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 const Context = createContext()
 
@@ -32,7 +34,10 @@ const Date = ({ live, format = 'DD/MM/YYYY' }) => {
     const data = useContext(Context)
     return (
         <p className={styles.date}>
-            {!live && 'Added'} {dayjs(data.sys.firstPublishedAt).format(format)}
+            {!live && 'Added'}{' '}
+            {dayjs(data.sys.firstPublishedAt)
+                .utc()
+                .format(format)}
         </p>
     )
 }
