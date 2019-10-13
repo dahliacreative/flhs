@@ -74,16 +74,6 @@ const Event = ({ match, history }) => {
                                         }}
                                     />
                                     <div className="generic">
-                                        {event.date && (
-                                            <>
-                                                <h3>Date / Time</h3>
-                                                <p>
-                                                    {dayjs(event.date)
-                                                        .utc()
-                                                        .format('ddd DD MMM YYYY, hh:mma')}
-                                                </p>
-                                            </>
-                                        )}
                                         {event.location && (
                                             <>
                                                 <h3>Location</h3>
