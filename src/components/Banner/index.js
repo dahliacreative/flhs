@@ -81,9 +81,9 @@ const RecordBanner = ({ banner }) => {
         return () => window.removeEventListener('scroll', setScroll, { passive: true })
     }, [])
     useEffect(() => {
-        setLoaded(false)
+        console.log('ting')
         setScroll()
-    }, [banner])
+    }, [banner.url])
     return (
         <div className={styles.banner} style={{ transform: `translate3d(0, ${scroll / 2}px, 0)` }}>
             <div className={styles.parallax}>
