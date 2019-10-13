@@ -63,9 +63,6 @@ const Event = ({ match, history }) => {
                                     <div className="generic">
                                         <h1 className={styles.title}>{event.title}</h1>
                                         <h3 style={{ marginTop: 0 }}>{event.speaker}</h3>
-                                        <p className={styles.date}>
-                                            {dayjs(event.date).format('ddd DD MMM YYYY, hh:mma')}
-                                        </p>
                                     </div>
                                     <div
                                         className="generic"
@@ -74,6 +71,16 @@ const Event = ({ match, history }) => {
                                         }}
                                     />
                                     <div className="generic">
+                                        {event.date && (
+                                            <>
+                                                <h3>Date / Time</h3>
+                                                <p>
+                                                    {dayjs(event.date)
+                                                        .utc()
+                                                        .format('ddd DD MMM YYYY, hh:mma')}
+                                                </p>
+                                            </>
+                                        )}
                                         {event.location && (
                                             <>
                                                 <h3>Location</h3>
