@@ -62,6 +62,7 @@ const Event = ({ match, history }) => {
                                 <Container light pad>
                                     <div className="generic">
                                         <h1 className={styles.title}>{event.title}</h1>
+                                        <h3 style={{ marginTop: 0 }}>{event.speaker}</h3>
                                         <p className={styles.date}>
                                             {dayjs(event.date).format('ddd DD MMM YYYY, hh:mma')}
                                         </p>
@@ -72,6 +73,48 @@ const Event = ({ match, history }) => {
                                             __html: documentToHtmlString(event.content.json)
                                         }}
                                     />
+                                    <div className="generic">
+                                        {event.date && (
+                                            <>
+                                                <h3>Date / Time</h3>
+                                                <p>
+                                                    {dayjs(event.date)
+                                                        .utc()
+                                                        .format('ddd DD MMM YYYY, hh:mma')}
+                                                </p>
+                                            </>
+                                        )}
+                                        {event.location && (
+                                            <>
+                                                <h3>Location</h3>
+                                                <p>{event.location}</p>
+                                            </>
+                                        )}
+                                        {(event.membersPrice || event.nonMembersPrice) && (
+                                            <>
+                                                <h3>Entry Fees</h3>
+                                                <p>
+                                                    {event.membersPrice && (
+                                                        <>
+                                                            <b>FLHS Members:</b> £
+                                                            {parseFloat(event.membersPrice).toFixed(2)}
+                                                        </>
+                                                    )}
+                                                    {event.nonMembersPrice && (
+                                                        <>
+                                                            <br />
+                                                            <b>Non-members:</b> £
+                                                            {parseFloat(event.nonMembersPrice).toFixed(2)}
+                                                        </>
+                                                    )}
+                                                </p>
+                                            </>
+                                        )}
+                                        <small>
+                                            Please note that speakers and the subject topics may change at short notice
+                                            due to circumstances beyond our control.
+                                        </small>
+                                    </div>
                                     <div className={styles.comments}>
                                         <DiscussionEmbed
                                             shortname={constants.DISQUS_SHORTNAME}
