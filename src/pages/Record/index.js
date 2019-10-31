@@ -76,15 +76,17 @@ const Record = ({ match, history }) => {
                                     {record.credit ? record.credit : 'unknown'}
                                 </p>
                                 <p className={styles.description}>{record.description}</p>
-                                <div className={styles.comments}>
-                                    <DiscussionEmbed
-                                        shortname={constants.DISQUS_SHORTNAME}
-                                        config={{
-                                            url: `${window.location.origin}/archives/records/${record.sys.id}`,
-                                            identifier: record.sys.id,
-                                            title: record.title
-                                        }}
-                                    />
+                                <div className="generic wide">
+                                    <div className={styles.comments}>
+                                        <DiscussionEmbed
+                                            shortname={constants.DISQUS_SHORTNAME}
+                                            config={{
+                                                url: `${window.location.origin}/archives/records/${record.sys.id}`,
+                                                identifier: record.sys.id,
+                                                title: record.title
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             </>
                         )}

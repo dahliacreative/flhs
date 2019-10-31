@@ -43,7 +43,7 @@ const Homepage = () => {
                         </div>
                         <div className={styles.featureImage}>
                             <img
-                                src="https://images.ctfassets.net/s8lmwsl3nd3d/3xUVDMiNMLv18mXLes3W7w/715350243ef32f93c3639b7a52f9f631/fpa1516.jpg?w=1280&h=990&q=30&fit=fill&f=center&fm=jpg"
+                                src="https://images.ctfassets.net/s8lmwsl3nd3d/6Q3sRFzqejxSjS6sRuRHw0/6324d94410c66574116b2a72fad9bd50/DSCN1192_2.jpeg?w=1280&h=990&q=30&fit=fill&f=center&fm=jpg"
                                 alt=""
                             />
                         </div>

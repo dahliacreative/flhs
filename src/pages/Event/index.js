@@ -81,12 +81,6 @@ const Event = ({ match, history }) => {
                                                 </p>
                                             </>
                                         )}
-                                        {event.location && (
-                                            <>
-                                                <h3>Location</h3>
-                                                <p>{event.location}</p>
-                                            </>
-                                        )}
                                         {(event.membersPrice || event.nonMembersPrice) && (
                                             <>
                                                 <h3>Entry Fees</h3>
@@ -107,20 +101,41 @@ const Event = ({ match, history }) => {
                                                 </p>
                                             </>
                                         )}
+                                        {event.location && (
+                                            <>
+                                                <h3>Location</h3>
+                                                <iframe
+                                                    style={{ minHeight: 300 }}
+                                                    title="map"
+                                                    width="100%"
+                                                    height="100%"
+                                                    id="mapcanvas"
+                                                    src={`https://maps.google.com/maps?q=${event.location}&Roadmap&z=10&ie=UTF8&iwloc=&output=embed`}
+                                                    frameBorder="0"
+                                                    scrolling="no"
+                                                    marginHeight="0"
+                                                    marginWidth="0"
+                                                ></iframe>
+                                            </>
+                                        )}
+                                        <br />
+                                        <br />
                                         <small>
                                             Please note that speakers and the subject topics may change at short notice
                                             due to circumstances beyond our control.
                                         </small>
                                     </div>
-                                    <div className={styles.comments}>
-                                        <DiscussionEmbed
-                                            shortname={constants.DISQUS_SHORTNAME}
-                                            config={{
-                                                url: `${window.location.origin}/events/${event.sys.id}`,
-                                                identifier: event.sys.id,
-                                                title: event.title
-                                            }}
-                                        />
+                                    <div className="generic">
+                                        <div className={styles.comments}>
+                                            <DiscussionEmbed
+                                                shortname={constants.DISQUS_SHORTNAME}
+                                                config={{
+                                                    url: `${window.location.origin}/events/${event.sys.id}`,
+                                                    identifier: event.sys.id,
+                                                    title: event.title
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </Container>
                             </main>

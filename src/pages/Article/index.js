@@ -75,15 +75,17 @@ const Article = ({ match, history }) => {
                                             __html: documentToHtmlString(article.content.json)
                                         }}
                                     />
-                                    <div className={styles.comments}>
-                                        <DiscussionEmbed
-                                            shortname={constants.DISQUS_SHORTNAME}
-                                            config={{
-                                                url: `${window.location.origin}/news/${article.sys.id}`,
-                                                identifier: article.sys.id,
-                                                title: article.title
-                                            }}
-                                        />
+                                    <div className="generic">
+                                        <div className={styles.comments}>
+                                            <DiscussionEmbed
+                                                shortname={constants.DISQUS_SHORTNAME}
+                                                config={{
+                                                    url: `${window.location.origin}/news/${article.sys.id}`,
+                                                    identifier: article.sys.id,
+                                                    title: article.title
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 </Container>
                             </main>

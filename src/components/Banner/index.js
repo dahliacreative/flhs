@@ -81,7 +81,6 @@ const RecordBanner = ({ banner }) => {
         return () => window.removeEventListener('scroll', setScroll, { passive: true })
     }, [])
     useEffect(() => {
-        console.log('ting')
         setScroll()
     }, [banner.url])
     return (
