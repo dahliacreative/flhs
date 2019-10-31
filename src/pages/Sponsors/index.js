@@ -46,16 +46,16 @@ const Sponsors = ({ history, match }) => {
     return (
         <>
             <Banner id="53vFKuS5TyVixKU1s7obxz" />
-            <main className="tabs">
+            <main className="">
                 <Tabs active={tabs.findIndex(p => p === match.params.page)} onChange={changeTab}>
-                    <Container pad>
+                    {/* <Container pad>
                         <Tabs.Navigation>
-                            <Tabs.Link>Gold Sponsors</Tabs.Link>
+                            <Tabs.Link>Launch Sponsors</Tabs.Link>
                             <Tabs.Link>Silver Sponsors</Tabs.Link>
                             <Tabs.Link>Bronze Sponsors</Tabs.Link>
                             <Tabs.Link>Individual Sponsors</Tabs.Link>
                         </Tabs.Navigation>
-                    </Container>
+                    </Container> */}
 
                     {error ? (
                         <Error error={error} />

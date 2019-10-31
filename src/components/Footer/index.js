@@ -37,7 +37,7 @@ const Footer = () => {
             <Container>
                 {!loading && !error && (
                     <div className={styles.sponsors}>
-                        <p>Thank you to our gold sponsors</p>
+                        <p>Thank you to our launch sponsors</p>
                         <div className={styles.logos}>
                             {data.sponsorCollection.items.map(i => (
                                 <a
