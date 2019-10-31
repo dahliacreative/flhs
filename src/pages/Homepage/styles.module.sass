@@ -159,3 +159,78 @@
         @supports(mix-blend-mode: soft-light)
             display: block
             mix-blend-mode: soft-light
+
+.recordGrid
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr
+
+    .record
+        position: relative
+        overflow: hidden
+
+        img
+            +size(100%)
+            object-fit: cover
+            display: block
+
+        &:first-child
+            grid-column-start: 1
+            grid-column-end: 2
+            grid-row-start: 1
+            grid-row-end: 3
+
+        &::before,
+        &::after
+            +position(absolute, 0)
+            background-color: rgba(#002F59, .5)
+            content: ""
+            mix-blend-mode: lighten
+            z-index: 1
+            
+
+        &::after
+            display: none
+            background-color: rgba(#00172C, .5)
+            @supports(mix-blend-mode: soft-light)
+                display: block
+                mix-blend-mode: soft-light
+
+        \:global(.show-hovers) &
+            .info
+                transition: .5s $ease-in-out-quint
+                transform: scale(1.1)
+            &:hover
+                .info
+                    opacity: 1
+                    transform: none
+
+        .info
+            +position(absolute, 10px)
+            align-items: center
+            background-color: rgba($brand-dark, .9)
+            display: flex
+            flex-direction: column
+            justify-content: center
+            z-index: 2
+            opacity: 0
+
+            \:global(.hide-hovers) &
+                +position(absolute, 0)
+
+            p
+                text-transform: uppercase
+                color: #ffffff
+                font-family: $font-main
+                font-weight: 300
+                letter-spacing: 1px
+                text-align: center
+                max-width: 80%
+                line-height: 1.4
+                margin: 0 0 20px
+
+                &:nth-child(2)
+                    font-family: $font-secondary
+                    color: $brand-secondary
+                    font-style: italic
+                    text-transform: none

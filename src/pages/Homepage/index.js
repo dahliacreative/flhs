@@ -7,6 +7,7 @@ import Button from 'components/Button'
 
 import NewsPartial from './news'
 import EventPartial from './event'
+import ArchivePartial from './archive'
 
 import styles from './styles.module.sass'
 
@@ -49,6 +50,7 @@ const Homepage = () => {
                         </div>
                     </div>
                     <EventPartial />
+                    <ArchivePartial />
                     <NewsPartial />
                 </Container>
             </main>
