@@ -9,8 +9,8 @@ import Error from 'components/Error'
 import Banner from 'components/Banner'
 
 const query = gql`
-    query Terms {
-        contentPage(id: "25WkPuayvhoduGsK7ufpI") {
+    query Town {
+        contentPage(id: "63JlWL1XlnCVyvz9GvAJ9s") {
             title
             content {
                 json
@@ -19,12 +19,12 @@ const query = gql`
     }
 `
 
-const Terms = () => {
-    hooks.useMeta('FLHS :: Terms & Conditions')
+const Town = () => {
+    hooks.useMeta('FLHS :: The Town')
     const { data, error, loading } = useQuery(query)
     return (
         <>
-            <Banner id="3xjJWOJcilMy5xE9aQ8Vk8" />
+            <Banner id="3RlsX7hbYApvYyxHmzmB9D" />
             <main>
                 <Container light pad>
                     {error ? (
@@ -51,4 +51,4 @@ const Terms = () => {
     )
 }
 
-export default Terms
+export default Town

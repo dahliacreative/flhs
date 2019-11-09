@@ -62,7 +62,7 @@ const Event = ({ match, history }) => {
                                 <Container light pad>
                                     <div className="generic">
                                         <h1 className={styles.title}>{event.title}</h1>
-                                        <h3 style={{ marginTop: 0 }}>{event.speaker}</h3>
+                                        <p className={styles.speaker}>{event.speaker}</p>
                                     </div>
                                     <div
                                         className="generic"

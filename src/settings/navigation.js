@@ -38,6 +38,10 @@ const secondary = [
     {
         label: 'Contact',
         url: '/contact'
+    },
+    {
+        label: 'Links',
+        url: '/links'
     }
 ]
 

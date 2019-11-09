@@ -17,6 +17,8 @@ import Event from 'pages/Event'
 import Articles from 'pages/Articles'
 import Article from 'pages/Article'
 import Homepage from 'pages/Homepage'
+import Town from 'pages/Town'
+import FourOhFour from 'pages/FourOhFour'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -48,6 +50,8 @@ const App = () => {
                         <Route exact path="/events/:id" component={Event} />
                         <Route exact path="/news" component={Articles} />
                         <Route exact path="/news/:id" component={Article} />
+                        <Route exact path="/town" component={Town} />
+                        <Route exact path="*" component={FourOhFour} />
                     </Switch>
                     <Footer />
                     <Feedback />
