@@ -54,8 +54,8 @@ const Society = ({ history, match }) => {
                                         donated to the society.
                                     </p>
                                     <p>
-                                        The society holds <Link to="/events">ten meetings a year</Link>, usually on the
-                                        fourth Monday of the month, on a range of historical and social subjects of
+                                        The society holds <Link to="/events">eleven meetings a year</Link>, usually on
+                                        the fourth Monday of the month, on a range of historical and social subjects of
                                         local, county or national interest. It also produces three{' '}
                                         <Link to="/society/newsletters">newsletters</Link> a year containing articles
                                         relating to Finedon’s past. It has also produced various publications notably
