@@ -44,7 +44,7 @@ const Date = ({ live, format = 'DD/MM/YYYY' }) => {
 
 const CommentCount = ({ children }) => <div className={styles.count}>{children}</div>
 
-const Image = () => {
+const Image = ({ className }) => {
     const data = useContext(Context)
     const imageHasLoaded = () => {
         setTimeout(() => {
@@ -52,7 +52,7 @@ const Image = () => {
         }, 100)
     }
     return (
-        <div className={styles.image}>
+        <div className={cx(styles.image, className && styles[className])}>
             <img
                 className={styles.original}
                 src={data.image ? data.image.url : data.attachment.url}

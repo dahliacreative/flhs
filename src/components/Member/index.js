@@ -27,7 +27,7 @@ const Member = props => {
     }
     return (
         <Card {...data}>
-            <Card.Image />
+            <Card.Image className="member" />
             <Card.Title />
             <p>{props.role}</p>
         </Card>
