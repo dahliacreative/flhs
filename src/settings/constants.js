@@ -25,6 +25,15 @@ const CARD_IMAGE_DIMENSIONS = {
     format: 'JPG'
 }
 
+const PROFILE_IMAGE_DIMENSIONS = {
+    width: 760,
+    height: 760,
+    resizeStrategy: 'FILL',
+    resizeFocus: 'FACES',
+    quality: 30,
+    format: 'JPG'
+}
+
 const FEATURE_IMAGE_DIMENSIONS = {
     width: 1280,
     height: 990,
@@ -98,5 +107,6 @@ export default {
     SPONSOR_IMAGE_DIMENSIONS,
     SPONSOR_LARGE_IMAGE_DIMENSIONS,
     AVATAR_IMAGE_DIMENSIONS,
-    FEATURE_IMAGE_DIMENSIONS
+    FEATURE_IMAGE_DIMENSIONS,
+    PROFILE_IMAGE_DIMENSIONS
 }
