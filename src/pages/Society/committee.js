@@ -1,13 +1,13 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { useBreakpoints } from "react-device-breakpoints";
-import { constants, hooks } from "settings";
-import { gql } from "apollo-boost";
-import Member, { MemberFragment } from "components/Member";
-import Loading from "components/Loading";
-import Error from "components/Error";
-import Container from "components/Container";
-import Grid from "components/Grid";
+import React from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { useBreakpoints } from 'react-device-breakpoints'
+import { constants, hooks } from 'settings'
+import { gql } from 'apollo-boost'
+import Member, { MemberFragment } from 'components/Member'
+import Loading from 'components/Loading'
+import Error from 'components/Error'
+import Container from 'components/Container'
+import Grid from 'components/Grid'
 
 const query = gql`
   ${MemberFragment}
@@ -18,14 +18,14 @@ const query = gql`
       }
     }
   }
-`;
+`
 
 const Committee = () => {
-  hooks.useMeta("FLHS :: Society :: Committee");
-  const device = useBreakpoints();
+  hooks.useMeta('FLHS :: Society :: Committee')
+  const device = useBreakpoints()
   const { loading, error, data } = useQuery(query, {
     variables: { transform: constants.PROFILE_IMAGE_DIMENSIONS }
-  });
+  })
   return (
     <Container light pad>
       {error ? (
@@ -54,7 +54,7 @@ const Committee = () => {
         </>
       )}
     </Container>
-  );
-};
+  )
+}
 
-export default Committee;
+export default Committee
