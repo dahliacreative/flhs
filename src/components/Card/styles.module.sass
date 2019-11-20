@@ -28,8 +28,18 @@
     position: relative
 
     &.member
+        background-color: $brand-light
         .placeholder
             padding: 50%
+
+        &.placeholder
+            background-color: $white
+            .original
+                width: auto
+                height: 100%
+                left: 50%
+                transform: translateX(-50%)
+                opacity: 0.1
 
     .original
         +position(absolute, 0 null null 0)
