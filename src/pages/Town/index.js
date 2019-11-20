@@ -9,46 +9,49 @@ import Error from 'components/Error'
 import Banner from 'components/Banner'
 
 const query = gql`
-    query Town {
-        contentPage(id: "63JlWL1XlnCVyvz9GvAJ9s") {
-            title
-            content {
-                json
-            }
-        }
+  query Town {
+    contentPage(id: "63JlWL1XlnCVyvz9GvAJ9s") {
+      title
+      content {
+        json
+      }
     }
+  }
 `
 
 const Town = () => {
-    hooks.useMeta('FLHS :: The Town')
-    const { data, error, loading } = useQuery(query)
-    return (
-        <>
-            <Banner id="3RlsX7hbYApvYyxHmzmB9D" />
-            <main>
-                <Container light pad>
-                    {error ? (
-                        <Error error={error} />
-                    ) : (
-                        <>
-                            {loading ? (
-                                <Loading />
-                            ) : (
-                                <>
-                                    <div
-                                        className="generic"
-                                        dangerouslySetInnerHTML={{
-                                            __html: documentToHtmlString(data.contentPage.content.json)
-                                        }}
-                                    />
-                                </>
-                            )}
-                        </>
-                    )}
-                </Container>
-            </main>
-        </>
-    )
+  hooks.useMeta('FLHS :: The Town')
+  const { data, error, loading } = useQuery(query)
+  return (
+    <>
+      <Banner id="3RlsX7hbYApvYyxHmzmB9D" />
+      <main>
+        <Container light pad>
+          {error ? (
+            <Error error={error} />
+          ) : (
+            <>
+              {loading ? (
+                <Loading />
+              ) : (
+                <>
+                  <div className="generic">
+                    <h1>A brief history of Finedon</h1>
+                  </div>
+                  <div
+                    className="generic"
+                    dangerouslySetInnerHTML={{
+                      __html: documentToHtmlString(data.contentPage.content.json)
+                    }}
+                  />
+                </>
+              )}
+            </>
+          )}
+        </Container>
+      </main>
+    </>
+  )
 }
 
 export default Town

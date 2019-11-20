@@ -31,6 +31,9 @@ const Society = ({ history, match }) => {
             <div>
               <Container light pad>
                 <div className="generic">
+                  <h1>About the society</h1>
+                </div>
+                <div className="generic">
                   <p>
                     The Finedon Local History Society was founded in 2000 by a small group of local people who share an
                     interest in the history of Finedon and its inhabitants. In October 2001, the Society was fortunate
