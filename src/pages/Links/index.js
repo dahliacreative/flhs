@@ -6,7 +6,7 @@ import Container from 'components/Container'
 import Banner from 'components/Banner'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
-import { ReactTinyLink } from 'react-tiny-link'
+import Microlink from '@microlink/react'
 
 const query = gql`
   query Links {
@@ -46,7 +46,7 @@ const Links = () => {
                       <h3>{c.title}</h3>
                       {c.linkedFrom.linkCollection.items.map(l => (
                         <div style={{ marginBottom: 10 }} key={l.url}>
-                          <ReactTinyLink url={l.url} />
+                          <Microlink url={l.url} style={{ fontFamily: 'Roboto, sans-serif' }} />
                         </div>
                       ))}
                     </div>
