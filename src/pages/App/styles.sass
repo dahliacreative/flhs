@@ -90,7 +90,7 @@ main
     h5, h6
         font-size: 16px
 
-    a
+    a:not([class])
         color: $brand-secondary
         transition: .2s
 
@@ -168,3 +168,15 @@ form
                 
                 &:last-child
                     margin-right: 0
+
+.react_tinylink_card
+    color: $brand-medium
+    font-family: $font-main
+
+    .show-hovers &:hover,
+    .hide-hovers &:active
+        background-color: rgba($brand-light, .075) !important
+
+.react_tinylink_card_content_header_description
+    font-weight: 400 !important
+    text-transform: uppercase
