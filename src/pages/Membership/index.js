@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { hooks } from 'settings'
 import Container from 'components/Container'
 import Banner from 'components/Banner'
@@ -18,7 +19,18 @@ const Membership = () => {
               become a member of the society, please download and complete the membership form attached below.
             </p>
             <p>
-              <a href={form} download target="_blank" rel="noopener noreferrer">
+              <a
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Membership',
+                    action: 'Form Download'
+                  })
+                }}
+                href={form}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Membership application form.
               </a>
             </p>

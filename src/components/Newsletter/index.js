@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { gql } from 'apollo-boost'
 import Card from 'components/Card'
 
@@ -23,7 +24,19 @@ const Newsletter = props => {
   }
   return (
     <Card {...data}>
-      <Card.Link href={props.upload.url} target="_blank" rel="noopener noreferrer" download>
+      <Card.Link
+        onClick={() => {
+          ReactGA.event({
+            category: 'Newsletter',
+            action: 'Download',
+            label: data.title
+          })
+        }}
+        href={props.upload.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+      >
         <Card.Image />
         <Card.Title />
       </Card.Link>

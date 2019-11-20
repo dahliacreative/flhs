@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import ReactGA from 'react-ga'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { Breakpoints } from 'react-device-breakpoints'
@@ -27,6 +28,8 @@ import Footer from 'components/Footer'
 import Feedback from 'components/Feedback'
 
 import './styles.sass'
+
+ReactGA.initialize('UA-84643905-2')
 
 const App = () => {
   useEffect(() => {
