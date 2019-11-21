@@ -10,43 +10,43 @@ import Container from 'components/Container'
 import Grid from 'components/Grid'
 
 const query = gql`
-    ${NewsletterFragment}
-    query Newsletters {
-        newsletterCollection {
-            items {
-                ...NewsletterFragment
-            }
-        }
+  ${NewsletterFragment}
+  query Newsletters($transform: ImageTransformOptions!) {
+    newsletterCollection(order: sys_firstPublishedAt_DESC) {
+      items {
+        ...NewsletterFragment
+      }
     }
+  }
 `
 
 const Newsletters = () => {
-    hooks.useMeta('FLHS :: Society :: Newsletters')
-    const device = useBreakpoints()
-    const { loading, error, data } = useQuery(query, {
-        variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
-    })
-    return (
-        <Container light pad>
-            {error ? (
-                <Error error={error} />
-            ) : (
-                <>
-                    {loading ? (
-                        <Loading />
-                    ) : (
-                        <Grid columns={device.isMobile ? 1 : device.isLargeMobile || device.isTablet ? 2 : 3}>
-                            {data.newsletterCollection.items.map(newsletter => (
-                                <Grid.Item key={newsletter.sys.id}>
-                                    <Newsletter {...newsletter} />
-                                </Grid.Item>
-                            ))}
-                        </Grid>
-                    )}
-                </>
-            )}
-        </Container>
-    )
+  hooks.useMeta('FLHS :: Society :: Newsletters')
+  const device = useBreakpoints()
+  const { loading, error, data } = useQuery(query, {
+    variables: { transform: constants.CARD_IMAGE_DIMENSIONS }
+  })
+  return (
+    <Container light pad>
+      {error ? (
+        <Error error={error} />
+      ) : (
+        <>
+          {loading ? (
+            <Loading />
+          ) : (
+            <Grid columns={device.isMobile ? 1 : device.isLargeMobile || device.isTablet ? 2 : 3}>
+              {data.newsletterCollection.items.map(newsletter => (
+                <Grid.Item key={newsletter.sys.id}>
+                  <Newsletter {...newsletter} />
+                </Grid.Item>
+              ))}
+            </Grid>
+          )}
+        </>
+      )}
+    </Container>
+  )
 }
 
 export default Newsletters

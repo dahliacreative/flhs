@@ -9,6 +9,9 @@ const NewsletterFragment = gql`
     upload {
       url
     }
+    cover {
+      url(transform: $transform)
+    }
     sys {
       id
     }
@@ -19,7 +22,7 @@ const Newsletter = props => {
   const data = {
     title: props.title,
     image: {
-      url: require('images/placeholder-pdf.jpg')
+      url: props.cover ? props.cover.url : require('images/placeholder-pdf.jpg')
     }
   }
   return (
