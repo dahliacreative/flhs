@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.0.0",
+    "@babel/polyfill": "^7.7.0",
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "@material-ui/core": "^4.4.0",
     "@material-ui/icons": "^4.2.1",
@@ -29,7 +30,8 @@
     "react-select": "^3.0.4",
     "react-tiny-link": "^2.0.1",
     "reactide-config": "^1.0.2",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "whatwg-fetch": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
