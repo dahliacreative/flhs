@@ -1,5 +1,4 @@
-import '@babel/polyfill'
-import 'whatwg-fetch'
+import 'react-app-polyfill/ie11'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from 'pages/App'
