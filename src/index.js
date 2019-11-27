@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from 'pages/App'
 
-fetch('./netlify/functions/deleteTag', {
+fetch('/.netlify/functions/deleteTag', {
   method: 'POST',
   body: JSON.stringify({
     tagId: '1laRohRI3AZ3HpzeRsPNDx',
