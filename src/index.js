@@ -7,7 +7,7 @@ import uuid from 'uuid'
 
 let userId = localStorage.getItem('user')
 if (!userId) {
-  localStorage.setItem(uuid())
+  localStorage.setItem('user', uuid())
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
