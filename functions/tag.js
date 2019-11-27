@@ -33,7 +33,8 @@ exports.handler = async (event, context, callback) => {
     ]
     await record.update()
     callback(null, {
-      statusCode: 200
+      statusCode: 200,
+      body: JSON.stringify(entry)
     })
   } catch (error) {
     callback(null, {
