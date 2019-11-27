@@ -56,7 +56,7 @@ const Record = ({ match, history }) => {
   const saveTag = tag => {
     fetch('/.netlify/functions/tag', {
       method: 'POST',
-      data: JSON.stringify({
+      body: JSON.stringify({
         title: tag.data.text,
         recordId: record.sys.id,
         tagData: {
