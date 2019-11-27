@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactGA from 'react-ga'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
@@ -70,10 +70,7 @@ const Record = ({ match, history }) => {
           }
         }
       })
-    }).then(() => {
-      refetch()
-      setAnnotation({})
-    })
+    }).then(refetch)
   }
   const deleteTag = id => {
     const tag = record.imageTagsCollection.items.find(t => t.tagData.data.id === id)
@@ -85,6 +82,9 @@ const Record = ({ match, history }) => {
       })
     }).then(refetch)
   }
+  useEffect(() => {
+    setAnnotation({})
+  }, [record])
   hooks.useMeta(title)
   return (
     <main className="no-banner">
