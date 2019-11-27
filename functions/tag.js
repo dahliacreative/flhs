@@ -21,8 +21,8 @@ exports.handler = async (event, context, callback) => {
       }
     })
     entry.publish()
-    record.fields.imageTags['en-US'] = [
-      ...record.fields.imageTags['en-US'],
+    console.log(record.fields.imageTags['en-US'])
+    record.fields.imageTags['en-US'].concat([
       {
         sys: {
           id: entry.sys.id,
@@ -30,7 +30,7 @@ exports.handler = async (event, context, callback) => {
           type: 'Link'
         }
       }
-    ]
+    ])
     await record.update()
     callback(null, {
       statusCode: 200,
