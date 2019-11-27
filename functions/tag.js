@@ -36,6 +36,7 @@ exports.handler = async (event, context, callback) => {
       }
     }
     await record.update()
+    await record.publish()
     callback(null, {
       statusCode: 200,
       body: JSON.stringify(entry)
