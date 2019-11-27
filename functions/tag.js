@@ -35,8 +35,8 @@ exports.handler = async (event, context, callback) => {
         'en-US': [link]
       }
     }
-    await record.update()
-    await record.publish()
+    const newRecord = await record.update()
+    await newRecord.publish()
     callback(null, {
       statusCode: 200
     })

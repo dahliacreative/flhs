@@ -14,8 +14,8 @@ exports.handler = async (event, context, callback) => {
 
     record.fields.imageTags['en-US'] = record.fields.imageTags['en-US'].filter(t => t.sys.id !== data.tagId)
 
-    await record.update()
-    await record.publish()
+    const newRecord = await record.update()
+    await newRecord.publish()
     await entry.delete()
     callback(null, {
       statusCode: 200
