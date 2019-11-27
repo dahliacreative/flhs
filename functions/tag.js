@@ -20,17 +20,21 @@ exports.handler = async (event, context, callback) => {
         }
       }
     })
-    entry.publish()
-    console.log(record.fields.imageTags['en-US'])
-    record.fields.imageTags['en-US'].concat([
-      {
-        sys: {
-          id: entry.sys.id,
-          linkType: 'Entry',
-          type: 'Link'
-        }
+    await entry.publish()
+    const link = {
+      sys: {
+        id: entry.sys.id,
+        linkType: 'Entry',
+        type: 'Link'
       }
-    ])
+    }
+    if (record.fields.imageTags) {
+      record.fields.imageTags['en-US'].concat([link])
+    } else {
+      record.fields.imageTags = {
+        'en-US': [link]
+      }
+    }
     await record.update()
     callback(null, {
       statusCode: 200,
