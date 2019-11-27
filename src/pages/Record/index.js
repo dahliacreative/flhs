@@ -38,6 +38,8 @@ const query = gql`
 
 const Record = ({ match, history }) => {
   const [annotation, setAnnotation] = useState({})
+  const [saving, save] = useState(false)
+  const [deleting, deletion] = useState(false)
   const [title, updateTitle] = useState('FLHS :: Archive')
   const [isLoaded, setLoaded] = useState(false)
   const device = useBreakpoints()
@@ -57,6 +59,7 @@ const Record = ({ match, history }) => {
     }
   })
   const saveTag = tag => {
+    save(true)
     fetch('/.netlify/functions/tag', {
       method: 'POST',
       body: JSON.stringify({
@@ -74,6 +77,7 @@ const Record = ({ match, history }) => {
     }).then(refetch)
   }
   const deleteTag = id => {
+    deletion(true)
     const tag = record.imageTagsCollection.items.find(t => t.tagData.data.id === id)
     fetch('/.netlify/functions/deleteTag', {
       method: 'POST',
@@ -85,8 +89,24 @@ const Record = ({ match, history }) => {
   }
   useEffect(() => {
     setAnnotation({})
+    deletion(false)
+    save(false)
   }, [record])
   hooks.useMeta(title)
+  const anotateProps = {}
+  if (saving) {
+    anotateProps.renderEditor = ({ annotation }) => (
+      <div
+        className={styles.content}
+        style={{
+          left: `${annotation.geometry.x + annotation.geometry.width / 2}%`,
+          top: `${annotation.geometry.y + annotation.geometry.height}%`
+        }}
+      >
+        Saving tag...
+      </div>
+    )
+  }
   return (
     <main className="no-banner">
       <Container light pad>
@@ -101,6 +121,7 @@ const Record = ({ match, history }) => {
                 <Button onClick={() => history.goBack()}>Back to archives</Button>
                 <div className={cx([styles.attachment, isLoaded && styles.show])}>
                   <Annotation
+                    {...anotateProps}
                     src={record.attachment.url}
                     alt={record.title}
                     value={annotation}
@@ -143,7 +164,7 @@ const Record = ({ match, history }) => {
                           top: `${annotation.geometry.y + annotation.geometry.height}%`
                         }}
                       >
-                        {annotation.data.text}
+                        {deleting ? 'Deleteing tag...' : annotation.data.text}
                       </div>
                     )}
                   />
