@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactGA, { set } from 'react-ga'
+import ReactGA from 'react-ga'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import cx from 'classnames'
@@ -12,6 +12,9 @@ import Error from 'components/Error'
 import Container from 'components/Container'
 import Button from 'components/Button'
 import styles from './styles.module.sass'
+import { useBreakpoints } from 'react-device-breakpoints'
+import { Delete } from '@material-ui/icons'
+import uuid from 'uuid'
 
 const query = gql`
   ${RecordFragment}
@@ -34,10 +37,10 @@ const query = gql`
 `
 
 const Record = ({ match, history }) => {
-  const [tags, showTags] = useState(true)
   const [annotation, setAnnotation] = useState({})
   const [title, updateTitle] = useState('FLHS :: Archive')
   const [isLoaded, setLoaded] = useState(false)
+  const device = useBreakpoints()
   hooks.useMeta(title)
   const {
     loading,
@@ -61,8 +64,21 @@ const Record = ({ match, history }) => {
         recordId: record.sys.id,
         tagData: {
           geometry: tag.geometry,
-          data: tag.data
+          data: {
+            ...tag.data,
+            id: uuid()
+          }
         }
+      })
+    }).then(refetch)
+  }
+  const deleteTag = id => {
+    const tag = record.imageTagsCollection.items.find(t => t.tagData.data.id === id)
+    fetch('/.netlify/functions/deleteTag', {
+      method: 'POST',
+      body: JSON.stringify({
+        recordId: record.sys.id,
+        tagId: tag.sys.id
       })
     }).then(refetch)
   }
@@ -80,20 +96,55 @@ const Record = ({ match, history }) => {
               <>
                 <Button onClick={() => history.goBack()}>Back to archives</Button>
                 <div className={cx([styles.attachment, isLoaded && styles.show])}>
-                  {tags && (
-                    <Annotation
-                      src={record.attachment.url}
-                      alt={record.title}
-                      value={annotation}
-                      onChange={a => setAnnotation(a)}
-                      onSubmit={saveTag}
-                      annotations={record.imageTagsCollection.items}
-                    />
-                  )}
+                  <Annotation
+                    src={record.attachment.url}
+                    alt={record.title}
+                    value={annotation}
+                    onChange={a => setAnnotation(a)}
+                    onSubmit={saveTag}
+                    disableSelector={device.isTouchDevice}
+                    disableEditor={device.isTouchDevice}
+                    disableOverlay
+                    annotations={record.imageTagsCollection.items.map(t => t.tagData)}
+                    renderHighlight={({ key, annotation }) => (
+                      <div
+                        key={key}
+                        className={styles.highlight}
+                        style={{
+                          left: `${annotation.geometry.x}%`,
+                          top: `${annotation.geometry.y}%`,
+                          width: `${annotation.geometry.width}%`,
+                          height: `${annotation.geometry.height}%`
+                        }}
+                      >
+                        <button
+                          onClick={() => {
+                            if (window.confirm('Are you sure you wish to delete this tag?')) {
+                              deleteTag(annotation.data.id)
+                            }
+                          }}
+                        >
+                          <Delete />
+                        </button>
+                      </div>
+                    )}
+                    renderContent={({ key, annotation }) => (
+                      <div
+                        key={key}
+                        className={styles.content}
+                        style={{
+                          left: `${annotation.geometry.x + annotation.geometry.width / 2}%`,
+                          top: `${annotation.geometry.y + annotation.geometry.height}%`
+                        }}
+                      >
+                        {annotation.data.text}
+                      </div>
+                    )}
+                  />
                   <img
                     src={record.attachment.url}
                     alt={record.title}
-                    className={cx([styles.image, tags && styles.hide])}
+                    className={cx([styles.image, styles.hide])}
                     onLoad={() => setLoaded(true)}
                   />
                   <a
@@ -112,6 +163,7 @@ const Record = ({ match, history }) => {
                   >
                     Download Image
                   </a>
+                  {!device.isTouchDevice && <p className={styles.overlay}>Click and drag to tag</p>}
                 </div>
                 <h1 className={styles.title}>{record.title}</h1>
                 <p className={styles.date}>

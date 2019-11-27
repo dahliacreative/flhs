@@ -34,6 +34,7 @@
     "react-tiny-link": "^2.0.1",
     "reactide-config": "^1.0.2",
     "styled-components": "^4.4.1",
+    "uuid": "^3.3.3",
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
