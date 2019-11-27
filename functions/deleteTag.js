@@ -16,7 +16,8 @@ exports.handler = async (event, context, callback) => {
 
     const newRecord = await record.update()
     await newRecord.publish()
-    await entry.delete()
+    const newEntry = await entry.unpublish()
+    await newEntry.delete()
     callback(null, {
       statusCode: 200
     })
