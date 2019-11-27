@@ -66,7 +66,8 @@ const Record = ({ match, history }) => {
           geometry: tag.geometry,
           data: {
             ...tag.data,
-            id: uuid()
+            id: uuid(),
+            user: localStorage.getItem('user')
           }
         }
       })
@@ -120,15 +121,17 @@ const Record = ({ match, history }) => {
                           height: `${annotation.geometry.height}%`
                         }}
                       >
-                        <button
-                          onClick={() => {
-                            if (window.confirm('Are you sure you wish to delete this tag?')) {
-                              deleteTag(annotation.data.id)
-                            }
-                          }}
-                        >
-                          <Delete />
-                        </button>
+                        {annotation.data.user === localStorage.getItem('user') && (
+                          <button
+                            onClick={() => {
+                              if (window.confirm('Are you sure you wish to delete this tag?')) {
+                                deleteTag(annotation.data.id)
+                              }
+                            }}
+                          >
+                            <Delete />
+                          </button>
+                        )}
                       </div>
                     )}
                     renderContent={({ key, annotation }) => (
