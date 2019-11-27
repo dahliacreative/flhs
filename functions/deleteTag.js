@@ -10,33 +10,13 @@ exports.handler = async (event, context, callback) => {
     const space = await client.getSpace(process.env.REACT_APP_SPACE_ID)
     const environment = await space.getEnvironment(process.env.ENV_ID)
     const record = await environment.getEntry(data.recordId)
-    const entry = await environment.createEntry(process.env.CONTENT_TYPE_ID, {
-      fields: {
-        title: {
-          'en-US': data.title
-        },
-        tagData: {
-          'en-US': data.tagData
-        }
-      }
-    })
-    await entry.publish()
-    const link = {
-      sys: {
-        id: entry.sys.id,
-        linkType: 'Entry',
-        type: 'Link'
-      }
-    }
-    if (record.fields.imageTags) {
-      record.fields.imageTags['en-US'].concat([link])
-    } else {
-      record.fields.imageTags = {
-        'en-US': [link]
-      }
-    }
+    const entry = await environment.getEntry(data.tagId)
+
+    record.fields.imageTags['en-US'] = record.fields.imageTags['en-US'].filter(t => t.sys.id !== data.tagId)
+
     await record.update()
     await record.publish()
+    await entry.delete()
     callback(null, {
       statusCode: 200
     })
