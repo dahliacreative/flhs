@@ -70,7 +70,10 @@ const Record = ({ match, history }) => {
           }
         }
       })
-    }).then(refetch)
+    }).then(() => {
+      refetch()
+      setAnnotation({})
+    })
   }
   const deleteTag = id => {
     const tag = record.imageTagsCollection.items.find(t => t.tagData.data.id === id)
