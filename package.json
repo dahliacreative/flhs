@@ -26,6 +26,7 @@
     "react-device-breakpoints": "^2.0.3",
     "react-dom": "^16.8.6",
     "react-ga": "^2.7.0",
+    "react-image-annotation": "^0.9.10",
     "react-js-pagination": "^3.0.2",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",

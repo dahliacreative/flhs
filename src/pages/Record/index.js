@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import ReactGA from 'react-ga'
+import ReactGA, { set } from 'react-ga'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import cx from 'classnames'
+import Annotation from 'react-image-annotation'
 import { DiscussionEmbed } from 'disqus-react'
 import { constants, hooks } from 'settings'
 import { RecordFragment } from 'components/Record'
@@ -20,17 +21,28 @@ const query = gql`
       description
       year
       credit
+      imageTagsCollection {
+        items {
+          tagData
+          sys {
+            id
+          }
+        }
+      }
     }
   }
 `
 
 const Record = ({ match, history }) => {
+  const [tags, showTags] = useState(true)
+  const [annotation, setAnnotation] = useState({})
   const [title, updateTitle] = useState('FLHS :: Archive')
   const [isLoaded, setLoaded] = useState(false)
   hooks.useMeta(title)
   const {
     loading,
     error,
+    refetch,
     data: { record }
   } = useQuery(query, {
     variables: {
@@ -41,6 +53,19 @@ const Record = ({ match, history }) => {
       updateTitle(`FLHS :: Archive :: ${data.record.title}`)
     }
   })
+  const saveTag = tag => {
+    fetch('/.netlify/functions/tag', {
+      method: 'POST',
+      data: JSON.stringify({
+        title: tag.data.text,
+        recordId: record.sys.id,
+        tagData: {
+          geometry: tag.geometry,
+          data: tag.data
+        }
+      })
+    }).then(refetch)
+  }
   hooks.useMeta(title)
   return (
     <main className="no-banner">
@@ -55,10 +80,20 @@ const Record = ({ match, history }) => {
               <>
                 <Button onClick={() => history.goBack()}>Back to archives</Button>
                 <div className={cx([styles.attachment, isLoaded && styles.show])}>
+                  {tags && (
+                    <Annotation
+                      src={record.attachment.url}
+                      alt={record.title}
+                      value={annotation}
+                      onChange={a => setAnnotation(a)}
+                      onSubmit={saveTag}
+                      annotations={record.imageTagsCollection.items}
+                    />
+                  )}
                   <img
                     src={record.attachment.url}
                     alt={record.title}
-                    className={styles.image}
+                    className={cx([styles.image, tags && styles.hide])}
                     onLoad={() => setLoaded(true)}
                   />
                   <a
