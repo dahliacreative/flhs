@@ -164,7 +164,7 @@ const Record = ({ match, history }) => {
                           top: `${annotation.geometry.y + annotation.geometry.height}%`
                         }}
                       >
-                        {deleting ? 'Deleteing tag...' : annotation.data.text}
+                        {deleting ? 'Deleting tag...' : annotation.data.text}
                       </div>
                     )}
                   />
