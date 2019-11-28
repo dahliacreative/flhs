@@ -11,7 +11,7 @@ const category = gql`
         }
       }
       linkedFrom {
-        recordCollection(skip: $skip, limit: $limit, order: sys_firstPublishedAt_DESC) {
+        recordCollection(skip: $skip, limit: $limit) {
           skip
           limit
           total
