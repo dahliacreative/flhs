@@ -77,7 +77,7 @@ const Record = ({ match, history }) => {
     }).then(refetch)
   }
   const deleteTag = id => {
-    deletion(true)
+    deletion(id)
     const tag = record.imageTagsCollection.items.find(t => t.tagData.data.id === id)
     fetch('/.netlify/functions/deleteTag', {
       method: 'POST',
@@ -139,7 +139,8 @@ const Record = ({ match, history }) => {
                           left: `${annotation.geometry.x}%`,
                           top: `${annotation.geometry.y}%`,
                           width: `${annotation.geometry.width}%`,
-                          height: `${annotation.geometry.height}%`
+                          height: `${annotation.geometry.height}%`,
+                          display: deleting === annotation.data.id ? 'none' : 'block'
                         }}
                       >
                         {annotation.data.user === localStorage.getItem('user') && (
@@ -161,10 +162,11 @@ const Record = ({ match, history }) => {
                         className={styles.content}
                         style={{
                           left: `${annotation.geometry.x + annotation.geometry.width / 2}%`,
-                          top: `${annotation.geometry.y + annotation.geometry.height}%`
+                          top: `${annotation.geometry.y + annotation.geometry.height}%`,
+                          display: deleting === annotation.data.id ? 'none' : 'block'
                         }}
                       >
-                        {deleting ? 'Deleting tag...' : annotation.data.text}
+                        {annotation.data.text}
                       </div>
                     )}
                   />
