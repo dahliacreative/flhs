@@ -13,15 +13,6 @@ import Banner from 'components/Banner'
 import Author from 'components/Author'
 import styles from './styles.module.sass'
 
-const options = {
-  renderNode: {
-    'embedded-asset-block': node => {
-      const file = node.data.target.fields.file
-      return <img className="fluid" src={file.url} alt="" />
-    }
-  }
-}
-
 const query = gql`
   ${ArticleFragment}
   query Article($id: String!, $transform: ImageTransformOptions!, $avatar: ImageTransformOptions!) {
@@ -81,7 +72,7 @@ const Article = ({ match, history }) => {
                   <div
                     className="generic"
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(article.content.json, options)
+                      __html: documentToHtmlString(article.content.json)
                     }}
                   />
                   <div className="generic">
