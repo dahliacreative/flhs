@@ -29,7 +29,9 @@ exports.handler = async (event, context, callback) => {
       }
     }
     if (record.fields.imageTags) {
-      record.fields.imageTags['en-US'].concat([link])
+      const newLinks = record.fields.imageTags['en-US']
+      newLinks.push(link)
+      record.fields.imageTags['en-US'] = newLinks
     } else {
       record.fields.imageTags = {
         'en-US': [link]
