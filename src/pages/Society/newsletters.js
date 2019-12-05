@@ -12,7 +12,7 @@ import Grid from 'components/Grid'
 const query = gql`
   ${NewsletterFragment}
   query Newsletters($transform: ImageTransformOptions!) {
-    newsletterCollection(order: sys_firstPublishedAt_DESC) {
+    newsletterCollection(order: date_DESC) {
       items {
         ...NewsletterFragment
       }
