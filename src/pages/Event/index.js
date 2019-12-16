@@ -14,7 +14,7 @@ import styles from './styles.module.sass'
 
 const query = gql`
   ${EventFragment}
-  query Event($id: String!, $transform: ImageTransformOptions!) {
+  query Event($id: String!, $transform: ImageTransformOptions!, $content: ImageTransformOptions!) {
     event(id: $id) {
       ...EventFragment
       content {
@@ -45,7 +45,8 @@ const Event = ({ match, history }) => {
   } = useQuery(query, {
     variables: {
       id: match.params.id,
-      transform: constants.BANNER_IMAGE_DIMENSIONS
+      transform: constants.BANNER_IMAGE_DIMENSIONS,
+      content: constants.CONTENT_IMAGE_DIMENSIONS
     },
     onCompleted: data => {
       updateTitle(`FLHS :: Events :: ${data.event.title}`)

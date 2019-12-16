@@ -7,9 +7,10 @@ import Container from 'components/Container'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
 import Banner from 'components/Banner'
+import { constants } from 'settings'
 
 const query = gql`
-  query Town {
+  query Town($content: ImageTransformOptions!) {
     contentPage(id: "63JlWL1XlnCVyvz9GvAJ9s") {
       title
       content {
@@ -32,7 +33,11 @@ const query = gql`
 
 const Town = () => {
   hooks.useMeta('FLHS :: The Town')
-  const { data, error, loading } = useQuery(query)
+  const { data, error, loading } = useQuery(query, {
+    variables: {
+      content: constants.CONTENT_IMAGE_DIMENSIONS
+    }
+  })
   return (
     <>
       <Banner id="3RlsX7hbYApvYyxHmzmB9D" />
