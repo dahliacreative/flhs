@@ -6,8 +6,8 @@ exports.handler = (event, context, callback) => {
   const data = JSON.parse(event.body)
   callback({
     statusCode: 200,
-    body: {
+    body: JSON.stringify({
       thing: 'hi!'
-    }
+    })
   })
 }
