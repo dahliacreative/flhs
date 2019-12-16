@@ -15,11 +15,27 @@ import styles from './styles.module.sass'
 
 const query = gql`
   ${ArticleFragment}
-  query Article($id: String!, $transform: ImageTransformOptions!, $avatar: ImageTransformOptions!) {
+  query Article(
+    $id: String!
+    $transform: ImageTransformOptions!
+    $avatar: ImageTransformOptions!
+    $content: ImageTransformOptions!
+  ) {
     article(id: $id) {
       ...ArticleFragment
       content {
         json
+        links {
+          assets {
+            block {
+              url(transform: $content)
+              title
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -36,7 +52,8 @@ const Article = ({ match, history }) => {
     variables: {
       id: match.params.id,
       transform: constants.BANNER_IMAGE_DIMENSIONS,
-      avatar: constants.AVATAR_IMAGE_DIMENSIONS
+      avatar: constants.AVATAR_IMAGE_DIMENSIONS,
+      content: constants.CONTENT_IMAGE_DIMENSIONS
     },
     onCompleted: data => {
       updateTitle(`FLHS :: News :: ${data.article.title}`)
@@ -72,7 +89,16 @@ const Article = ({ match, history }) => {
                   <div
                     className="generic"
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(article.content.json)
+                      __html: documentToHtmlString(article.content.json, {
+                        renderNode: {
+                          'embedded-asset-block': node => {
+                            const asset = article.content.links.assets.block.find(
+                              a => a.sys.id === node.data.target.sys.id
+                            )
+                            return `<img class="fluid" src="${asset.url}" alt="${asset.title}" />`
+                          }
+                        }
+                      })
                     }}
                   />
                   <div className="generic">

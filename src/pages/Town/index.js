@@ -14,6 +14,17 @@ const query = gql`
       title
       content {
         json
+        links {
+          assets {
+            block {
+              url(transform: $content)
+              title
+              sys {
+                id
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -41,7 +52,16 @@ const Town = () => {
                   <div
                     className="generic"
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(data.contentPage.content.json)
+                      __html: documentToHtmlString(data.contentPage.content.json, {
+                        renderNode: {
+                          'embedded-asset-block': node => {
+                            const asset = data.content.links.assets.block.find(
+                              a => a.sys.id === node.data.target.sys.id
+                            )
+                            return `<img class="fluid" src="${asset.url}" alt="${asset.title}" />`
+                          }
+                        }
+                      })
                     }}
                   />
                 </>
