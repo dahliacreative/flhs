@@ -12,6 +12,7 @@ const LinkPreview = ({ url }) => {
       .then(r => {
         console.log(r)
       })
+      .catch(e => console.log(e))
   })
   return <p>Link</p>
 }
