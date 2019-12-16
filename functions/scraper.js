@@ -6,8 +6,11 @@ exports.handler = (event, context, callback) => {
   const data = JSON.parse(event.body)
   axios.get(data.url).then(({ data }) => {
     const $ = cheerio.load(data)
-    callback(null, {
-      thing: 'hi!'
-    })
+    callback(
+      null,
+      JSON.stringify({
+        thing: 'hi!'
+      })
+    )
   })
 }
