@@ -1,11 +1,15 @@
-import axios from 'axios'
+const rp = require('request-promise')
+const $ = require('cheerio')
 
 exports.handler = async (event, context, callback) => {
   const data = JSON.parse(event.body)
-  axios.get(data.url).then(res => {
+  rp(data.url).then(html => {
+    const title = $('title', html)
     callback({
       statusCode: 200,
-      body: res
+      body: JSON.stringify({
+        title
+      })
     })
   })
 }

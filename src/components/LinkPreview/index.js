@@ -8,10 +8,7 @@ const LinkPreview = ({ url }) => {
         url
       })
     })
-      .then(r => {
-        console.log(r.body)
-        return r.body
-      })
+      .then(r => r.json())
       .then(r => {
         console.log(r)
       })
