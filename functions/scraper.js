@@ -1,11 +1,11 @@
-import request from 'request'
+import axios from 'axios'
 
 exports.handler = async (event, context, callback) => {
   const data = JSON.parse(event.body)
-  request(data.url, (e, r, b) => {
+  axios.get(data.url).then(res => {
     callback({
       statusCode: 200,
-      body: b
+      body: res
     })
   })
 }
