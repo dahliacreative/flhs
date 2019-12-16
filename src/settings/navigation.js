@@ -45,11 +45,11 @@ const secondary = [
   {
     label: 'Contact',
     url: '/contact'
+  },
+  {
+    label: 'Links',
+    url: '/links'
   }
-  // {
-  //   label: 'Links',
-  //   url: '/links'
-  // }
 ]
 
 const footer = [

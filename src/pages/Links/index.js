@@ -6,7 +6,7 @@ import Container from 'components/Container'
 import Banner from 'components/Banner'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
-// import Microlink from '@microlink/react'
+import LinkPreview from 'components/LinkPreview'
 
 const query = gql`
   query Links {
@@ -46,7 +46,7 @@ const Links = () => {
                       <h3>{c.title}</h3>
                       {c.linkedFrom.linkCollection.items.map(l => (
                         <div style={{ marginBottom: 10 }} key={l.url}>
-                          {/* <Microlink url={l.url} style={{ fontFamily: 'Roboto, sans-serif' }} /> */}
+                          <LinkPreview url={l.url} />
                         </div>
                       ))}
                     </div>
