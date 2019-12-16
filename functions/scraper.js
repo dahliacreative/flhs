@@ -5,7 +5,7 @@ exports.handler = async (event, context, callback) => {
   request(data.url, (e, r, b) => {
     callback({
       statusCode: 200,
-      body: JSON.stringify(b)
+      body: b
     })
   })
 }
