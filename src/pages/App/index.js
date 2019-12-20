@@ -19,7 +19,7 @@ import Articles from 'pages/Articles'
 import Article from 'pages/Article'
 import Homepage from 'pages/Homepage'
 import Town from 'pages/Town'
-// import Links from 'pages/Links'
+import Links from 'pages/Links'
 import Membership from 'pages/Membership'
 import FourOhFour from 'pages/FourOhFour'
 
@@ -56,7 +56,7 @@ const App = () => {
             <Route exact path="/news" component={Articles} />
             <Route exact path="/news/:id" component={Article} />
             <Route exact path="/town" component={Town} />
-            {/* <Route exact path="/links" component={Links} /> */}
+            <Route exact path="/links" component={Links} />
             <Route exact path="/membership" component={Membership} />
             <Route exact path="*" component={FourOhFour} />
           </Switch>
