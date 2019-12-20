@@ -4,6 +4,7 @@ const LinkPreview = ({ url }) => {
   useEffect(() => {
     fetch('/.netlify/functions/scraper', {
       method: 'POST',
+      contentType: 'application/json',
       body: JSON.stringify({
         url
       })
