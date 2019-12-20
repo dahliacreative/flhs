@@ -7,7 +7,9 @@ const LinkPreview = ({ url }) => {
       body: JSON.stringify({
         url
       })
-    }).then(r => console.log(r.body))
+    })
+      .then(r => r.json())
+      .then(r => console.log(r))
   })
   return <p>Link</p>
 }
