@@ -143,7 +143,8 @@ const Record = ({ match, history }) => {
                           display: deleting === annotation.data.id ? 'none' : 'block'
                         }}
                       >
-                        {annotation.data.user === localStorage.getItem('user') && (
+                        {(annotation.data.user === localStorage.getItem('user') ||
+                          localStorage.getItem('role') === 'admin') && (
                           <button
                             onClick={() => {
                               if (window.confirm('Are you sure you wish to delete this tag?')) {
