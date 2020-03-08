@@ -84,7 +84,7 @@ const Archives = ({ location, history }) => {
   }
 
   const bannerID = query.category ? (data.category ? data.category.banner.sys.id : null) : '6sRxVmIS2xjBgxxi47j9TD'
-
+  console.log(collection.items)
   return (
     <>
       {bannerID && <Banner id={bannerID} />}
@@ -102,14 +102,16 @@ const Archives = ({ location, history }) => {
                     </ActionHeader.Control>
                   </ActionHeader.Column>
                   <ActionHeader.Column>
-                    <ActionHeader.Control>
-                      <ActionHeader.Label>Sort:</ActionHeader.Label>
-                      <Select
-                        options={constants.SORT_OPTIONS}
-                        value={constants.SORT_OPTIONS.find(o => o.value === query.order) || constants.SORT_OPTIONS[0]}
-                        onChange={changeOrder}
-                      />
-                    </ActionHeader.Control>
+                    {!query.category && (
+                      <ActionHeader.Control>
+                        <ActionHeader.Label>Sort:</ActionHeader.Label>
+                        <Select
+                          options={constants.SORT_OPTIONS}
+                          value={constants.SORT_OPTIONS.find(o => o.value === query.order) || constants.SORT_OPTIONS[0]}
+                          onChange={changeOrder}
+                        />
+                      </ActionHeader.Control>
+                    )}
                     <ActionHeader.Control>
                       <ActionHeader.Label>Category:</ActionHeader.Label>
                       <Categories selected={query.category} onChange={changeCategory} />
@@ -121,16 +123,20 @@ const Archives = ({ location, history }) => {
                 ) : (
                   <>
                     <Grid columns={device.isMobile ? 1 : device.isLargeMobile || device.isTablet ? 2 : 3}>
-                      {collection.items.map(record => (
-                        <Grid.Item key={record.sys.id}>
-                          <Record
-                            {...record}
-                            location={location}
-                            hideCategories={query.category ? true : false}
-                            categoryClick={changeCategory}
-                          />
-                        </Grid.Item>
-                      ))}
+                      {collection.items
+                        .sort((a, b) =>
+                          query.category ? new Date(b.sys.firstPublishedAt) - new Date(a.sys.firstPublishedAt) : false
+                        )
+                        .map(record => (
+                          <Grid.Item key={record.sys.id}>
+                            <Record
+                              {...record}
+                              location={location}
+                              hideCategories={query.category ? true : false}
+                              categoryClick={changeCategory}
+                            />
+                          </Grid.Item>
+                        ))}
                     </Grid>
                     {collection.total > 12 && (
                       <Pagination
