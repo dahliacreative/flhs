@@ -76,6 +76,15 @@ const Event = ({ match, history }) => {
                     <h1 className={styles.title}>{event.title}</h1>
                     <p className={styles.speaker}>{event.speaker}</p>
                   </div>
+                  {event.cancelled && (
+                    <div className="generic alert">
+                      <h3>Event Cancelled until further notice</h3>
+                      <p>
+                        For reasons beyond our control, this event has had to be cancelled. Please watch out for further
+                        updates and possible re-scheduling.
+                      </p>
+                    </div>
+                  )}
                   <div
                     className="generic"
                     dangerouslySetInnerHTML={{
@@ -96,9 +105,11 @@ const Event = ({ match, history }) => {
                       <>
                         <h3>Date / Time</h3>
                         <p>
-                          {dayjs(event.date)
-                            .utc()
-                            .format('ddd DD MMM YYYY, hh:mma')}
+                          {event.cancelled
+                            ? 'Cancelled until further notice'
+                            : dayjs(event.date)
+                                .utc()
+                                .format('ddd DD MMM YYYY, hh:mma')}
                         </p>
                       </>
                     )}
