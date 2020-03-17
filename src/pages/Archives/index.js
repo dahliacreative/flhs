@@ -84,7 +84,7 @@ const Archives = ({ location, history }) => {
   }
 
   const bannerID = query.category ? (data.category ? data.category.banner.sys.id : null) : '6sRxVmIS2xjBgxxi47j9TD'
-  console.log(collection.items)
+
   return (
     <>
       {bannerID && <Banner id={bannerID} />}

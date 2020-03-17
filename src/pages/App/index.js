@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { Breakpoints } from 'react-device-breakpoints'
 import { client, constants } from 'settings'
@@ -15,6 +15,7 @@ import Society from 'pages/Society'
 import Contact from 'pages/Contact'
 import Events from 'pages/Events'
 import Event from 'pages/Event'
+import Poster from 'pages/Event/poster'
 import Articles from 'pages/Articles'
 import Article from 'pages/Article'
 import Homepage from 'pages/Homepage'
@@ -31,38 +32,42 @@ import './styles.sass'
 
 ReactGA.initialize('UA-84643905-2')
 
-const App = () => {
+const App = ({ location }) => {
   useEffect(() => {
     handleEvents('addEventListener')()
     return handleEvents('removeEventListener')
   }, [])
+  const isPoster = location.pathname.includes('poster')
   return (
     <ApolloProvider client={client}>
       <Breakpoints {...constants.BREAKPOINTS}>
-        <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Homepage} />
-            <Route exact path="/archives" component={Archives} />
-            <Route exact path="/archives/categories" component={Categories} />
-            <Route exact path="/archives/records/:id" component={Record} />
-            <Route exact path="/sponsors/:page" component={Sponsors} />
-            <Route exact path="/privacy-policy" component={Privacy} />
-            <Route exact path="/terms-and-conditions" component={Terms} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/events" component={Events} />
-            <Route exact path="/society/:page" component={Society} />
-            <Route exact path="/events/:id" component={Event} />
-            <Route exact path="/news" component={Articles} />
-            <Route exact path="/news/:id" component={Article} />
-            <Route exact path="/town" component={Town} />
-            {/* <Route exact path="/links" component={Links} /> */}
-            <Route exact path="/membership" component={Membership} />
-            <Route exact path="*" component={FourOhFour} />
-          </Switch>
-          <Footer />
-          <Feedback />
-        </Router>
+        {!isPoster && <Header />}
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/archives" component={Archives} />
+          <Route exact path="/archives/categories" component={Categories} />
+          <Route exact path="/archives/records/:id" component={Record} />
+          <Route exact path="/sponsors/:page" component={Sponsors} />
+          <Route exact path="/privacy-policy" component={Privacy} />
+          <Route exact path="/terms-and-conditions" component={Terms} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/events" component={Events} />
+          <Route exact path="/society/:page" component={Society} />
+          <Route exact path="/events/:id" component={Event} />
+          <Route exact path="/events/:id/poster" component={Poster} />
+          <Route exact path="/news" component={Articles} />
+          <Route exact path="/news/:id" component={Article} />
+          <Route exact path="/town" component={Town} />
+          {/* <Route exact path="/links" component={Links} /> */}
+          <Route exact path="/membership" component={Membership} />
+          <Route exact path="*" component={FourOhFour} />
+        </Switch>
+        {!isPoster && (
+          <>
+            <Footer />
+            <Feedback />
+          </>
+        )}
       </Breakpoints>
     </ApolloProvider>
   )
