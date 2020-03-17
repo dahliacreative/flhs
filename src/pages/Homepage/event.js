@@ -55,6 +55,15 @@ const EventPartial = ({ client }) => {
                 <h3>Our Next Event</h3>
                 <h4>{event.title}</h4>
                 {event.speaker && <h5>{event.speaker}</h5>}
+                {event.cancelled && (
+                  <div className={styles.featureAlert}>
+                    <h3>Event Cancelled until further notice</h3>
+                    <p>
+                      For reasons beyond our control, this event has had to be cancelled. Please watch out for further
+                      updates and possible re-scheduling.
+                    </p>
+                  </div>
+                )}
                 <div
                   className="generic"
                   dangerouslySetInnerHTML={{
@@ -65,9 +74,11 @@ const EventPartial = ({ client }) => {
                   <>
                     <h5>Date / Time</h5>
                     <p>
-                      {dayjs(event.date)
-                        .utc()
-                        .format('ddd DD MMM YYYY, hh:mma')}
+                      {event.cancelled
+                        ? 'Cancelled until further notice'
+                        : dayjs(event.date)
+                            .utc()
+                            .format('ddd DD MMM YYYY, hh:mma')}
                     </p>
                   </>
                 )}

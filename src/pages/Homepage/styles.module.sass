@@ -93,7 +93,10 @@
 
     h5
         font-size: 16px
-        margin: 0
+        margin: 10px 0 0
+
+        &:first-of-type
+            margin: 0 0 5px
 
     &.dark
         background-color: $brand-light
@@ -159,6 +162,23 @@
         @supports(mix-blend-mode: soft-light)
             display: block
             mix-blend-mode: soft-light
+.featureAlert
+    background-color: $brand-secondary
+    padding: 16px
+    margin: 20px 0
+    
+    h3,
+    p
+        margin: 0
+        color: #fff
+
+    h3
+        font-size: 16px
+        font-weight: 300 !important
+
+    p
+        color: rgba(white, 0.8) !important
+        margin-top: 5px
 
 .recordGrid
     display: grid
