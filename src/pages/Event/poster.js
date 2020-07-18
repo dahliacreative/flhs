@@ -3,13 +3,10 @@ import { useQuery } from '@apollo/react-hooks'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { gql } from 'apollo-boost'
 import dayjs from 'dayjs'
-import { DiscussionEmbed } from 'disqus-react'
 import { constants, hooks } from 'settings'
 import { EventFragment } from 'components/Event'
 import Loading from 'components/Loading'
 import Error from 'components/Error'
-import Container from 'components/Container'
-import Banner from 'components/Banner'
 import styles from './styles.module.sass'
 
 const query = gql`

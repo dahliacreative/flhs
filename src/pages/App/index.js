@@ -15,7 +15,7 @@ import Society from 'pages/Society'
 import Contact from 'pages/Contact'
 import Events from 'pages/Events'
 import Event from 'pages/Event'
-import Poster from 'pages/Event/poster'
+// import Poster from 'pages/Event/poster'
 import Articles from 'pages/Articles'
 import Article from 'pages/Article'
 import Homepage from 'pages/Homepage'
@@ -54,7 +54,7 @@ const App = ({ location }) => {
           <Route exact path="/events" component={Events} />
           <Route exact path="/society/:page" component={Society} />
           <Route exact path="/events/:id" component={Event} />
-          <Route exact path="/events/:id/poster" component={Poster} />
+          {/* <Route exact path="/events/:id/poster" component={Poster} /> */}
           <Route exact path="/news" component={Articles} />
           <Route exact path="/news/:id" component={Article} />
           <Route exact path="/town" component={Town} />
