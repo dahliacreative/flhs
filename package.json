@@ -28,6 +28,7 @@
     "react-ga": "^2.7.0",
     "react-image-annotation": "^0.9.10",
     "react-js-pagination": "^3.0.2",
+    "react-pdf": "^4.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-select": "^3.0.4",
@@ -39,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start && netlify-lambda serve functions",
-    "build": "react-scripts build && netlify-lambda build functions",
+    "build": "CI=false react-scripts build && netlify-lambda build functions",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
