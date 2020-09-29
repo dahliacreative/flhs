@@ -7,8 +7,9 @@ import { hooks } from 'settings'
 
 import Committee from './committee'
 import Newsletters from './newsletters'
+import Publications from './publications'
 
-const tabs = ['about', 'members', 'newsletters']
+const tabs = ['about', 'members', 'newsletters', 'publications']
 
 const Society = ({ history, match }) => {
   const updateTab = i => {
@@ -25,6 +26,7 @@ const Society = ({ history, match }) => {
               <Tabs.Link>About the society</Tabs.Link>
               <Tabs.Link>Committee Members</Tabs.Link>
               <Tabs.Link>Newsletters</Tabs.Link>
+              <Tabs.Link>Publications</Tabs.Link>
             </Tabs.Navigation>
           </Container>
           <Tabs.Panels>
@@ -90,6 +92,9 @@ const Society = ({ history, match }) => {
             </div>
             <div>
               <Newsletters />
+            </div>
+            <div>
+              <Publications />
             </div>
           </Tabs.Panels>
         </Tabs>
