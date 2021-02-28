@@ -29,16 +29,13 @@ const Contact = () => {
                   NN15 6RB
                 </p>
                 <p>
-                  <a href="mailto:michael.britton@ntlworld.com">Michael Britton</a>
+                  <a href="mailto:finedonlhs@outlook.com">Michael Britton</a>
                 </p>
               </div>
             </Grid.Item>
             <Grid.Item>
               <div className="generic">
                 <h3>For Website Enquiries, Content Submissions or Sponsorship Opportunities</h3>
-                <p>
-                  <a href="mailto:simon@dahliacreative.com">Simon Sturgess</a>
-                </p>
                 <p>
                   <a href="mailto:grahamrsherwood@icloud.com">Graham Sherwood</a>
                 </p>
